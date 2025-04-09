@@ -44,6 +44,36 @@
       margin: auto;
     }
 
+    .search-bar {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .search-bar input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #1a3c34;
+      border-radius: 5px;
+      width: 200px;
+    }
+
+    .search-bar button {
+      background: #1a3c34;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background: #2e5a50;
+    }
+
     .animal-entry {
       background: #f5f7f5;
       border-radius: 15px;
@@ -51,11 +81,11 @@
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
-      display: block; /* Ensure entries are block by default */
+      display: block;
     }
 
     .animal-entry.hidden {
-      display: none; /* Hide entries when filtered out */
+      display: none;
     }
 
     .animal-entry:hover {
@@ -125,36 +155,6 @@
       font-size: 1rem;
     }
 
-    .search-bar {
-      margin: 1rem 0;
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .search-bar input {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 1px solid #1a3c34;
-      border-radius: 5px;
-      width: 200px;
-    }
-
-    .search-bar button {
-      background: #1a3c34;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-    }
-
-    .search-bar button:hover {
-      background: #2e5a50;
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -177,7 +177,7 @@
         font-size: 1.6rem;
       }
 
-       .animal-entry p,
+      .animal-entry p,
       .animal-entry li {
         font-size: 1rem;
       }
@@ -195,9 +195,15 @@
   </header>
 
   <div class="container">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search for an animal..." />
+      <button onclick="searchAnimals()">Search</button>
+    </div>
+
     <!-- 1. Elephants -->
     <div class="animal-entry">
       <h2>1. Elephants</h2>
+      <p><span class="label">Description:</span> Elephants are large, intelligent mammals native to Africa and Asia, known for their strong social bonds and long trunks.</p>
       <p><span class="label">Diet:</span> Grasses, leaves, bark, fruits (up to 300 lbs daily).</p>
       <p><span class="label">Life Span:</span> 60–70 years in the wild.</p>
       <p><span class="label">Conditions:</span> Parasites, skin infections, joint pain.</p>
@@ -216,6 +222,7 @@
     <!-- 2. Rhinoceroses -->
     <div class="animal-entry">
       <h2>2. Rhinoceroses</h2>
+      <p><span class="label">Description:</span> Rhinoceroses are massive herbivores with thick skin and distinctive horns, found in Africa and Asia.</p>
       <p><span class="label">Diet:</span> Grasses, leaves, shrubs, bark.</p>
       <p><span class="label">Life Span:</span> 35–50 years in the wild.</p>
       <p><span class="label">Conditions:</span> Wounds, arthritis, digestive issues.</p>
@@ -234,6 +241,7 @@
     <!-- 3. Bison -->
     <div class="animal-entry">
       <h2>3. Bison</h2>
+      <p><span class="label">Description:</span> Bison are large, shaggy mammals native to North America, known for their grazing herds on vast plains.</p>
       <p><span class="label">Diet:</span> Grasses, herbs, shrubs.</p>
       <p><span class="label">Life Span:</span> 15–20 years in the wild.</p>
       <p><span class="label">Conditions:</span> Infections, wounds, liver issues.</p>
@@ -252,6 +260,7 @@
     <!-- 4. Hippopotamuses -->
     <div class="animal-entry">
       <h2>4. Hippopotamuses</h2>
+      <p><span class="label">Description:</span> Hippos are semi-aquatic giants of Africa, spending much of their time in rivers and lakes.</p>
       <p><span class="label">Diet:</span> Grasses, aquatic plants, fruits.</p>
       <p><span class="label">Life Span:</span> 40–50 years in the wild.</p>
       <p><span class="label">Conditions:</span> Skin irritation, digestive issues, infections.</p>
@@ -270,6 +279,7 @@
     <!-- 5. Gorillas -->
     <div class="animal-entry">
       <h2>5. Gorillas</h2>
+      <p><span class="label">Description:</span> Gorillas are large primates living in African forests, known for their social groups and vegetarian diet.</p>
       <p><span class="label">Diet:</span> Leaves, fruits, bark, stems.</p>
       <p><span class="label">Life Span:</span> 35–40 years in the wild.</p>
       <p><span class="label">Conditions:</span> Digestive issues, joint pain, stress.</p>
@@ -288,6 +298,7 @@
     <!-- 6. Zebras -->
     <div class="animal-entry">
       <h2>6. Zebras</h2>
+      <p><span class="label">Description:</span> Zebras are African equids with distinctive black-and-white stripes, grazing in savanna herds.</p>
       <p><span class="label">Diet:</span> Grasses, bitter herbs, shrubs.</p>
       <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
       <p><span class="label">Conditions:</span> Parasites, wounds, digestive issues.</p>
@@ -306,6 +317,7 @@
     <!-- 7. Giraffes -->
     <div class="animal-entry">
       <h2>7. Giraffes</h2>
+      <p><span class="label">Description:</span> Giraffes are the tallest land animals, native to African savannas, with long necks for browsing treetops.</p>
       <p><span class="label">Diet:</span> Leaves from acacia, mimosa trees.</p>
       <p><span class="label">Life Span:</span> 25–30 years in the wild.</p>
       <p><span class="label">Conditions:</span> Joint issues, wounds, parasites.</p>
@@ -324,13 +336,14 @@
     <!-- 8. Camels -->
     <div class="animal-entry">
       <h2>8. Camels</h2>
+      <p><span class="label">Description:</span> Camels are desert-dwelling mammals with humps for fat storage, adapted to arid environments.</p>
       <p><span class="label">Diet:</span> Thorny bushes, shrubs, desert plants.</p>
       <p><span class="label">Life Span:</span> 40–50 years in the wild.</p>
       <p><span class="label">Conditions:</span> Infections, digestive issues, dehydration.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Fenugreek: Immune-boosting, anti-inflammatory; aids stomach.</li>
-        <li>Sagebrush: Detoxifies, improves digestion.</li>
+        <li>Sagebrush: Detox Errifies, improves digestion.</li>
         <li>Thyme: Antiseptic; fights infections.</li>
       </ul>
       <button class="collapse-button" onclick="toggleDetails('camelDetails')">Discover More</button>
@@ -342,6 +355,7 @@
     <!-- 9. Pandas -->
     <div class="animal-entry">
       <h2>9. Pandas</h2>
+      <p><span class="label">Description:</span> Pandas are black-and-white bears from China, primarily eating bamboo in mountain forests.</p>
       <p><span class="label">Diet:</span> Bamboo, fruits, flowers.</p>
       <p><span class="label">Life Span:</span> 15–20 years in the wild.</p>
       <p><span class="label">Conditions:</span> Digestive issues, inflammation, low energy.</p>
@@ -359,6 +373,7 @@
     <!-- 10. Sloths -->
     <div class="animal-entry">
       <h2>10. Sloths</h2>
+      <p><span class="label">Description:</span> Sloths are slow-moving mammals of Central and South American rainforests, hanging from trees.</p>
       <p><span class="label">Diet:</span> Leaves from cecropia, mimosa trees.</p>
       <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
       <p><span class="label">Conditions:</span> Slow metabolism, infections, inflammation.</p>
@@ -376,6 +391,7 @@
     <!-- 11. Koalas -->
     <div class="animal-entry">
       <h2>11. Koalas</h2>
+      <p><span class="label">Description:</span> Koalas are Australian marsupials that live in eucalyptus trees, sleeping most of the day.</p>
       <p><span class="label">Diet:</span> Eucalyptus leaves.</p>
       <p><span class="label">Life Span:</span> 10–15 years in the wild.</p>
       <p><span class="label">Conditions:</span> Infections, digestive issues, stress.</p>
@@ -392,6 +408,7 @@
     <!-- 12. Kangaroos -->
     <div class="animal-entry">
       <h2>12. Kangaroos</h2>
+      <p><span class="label">Description:</span> Kangaroos are Australian marsupials known for hopping and carrying young in pouches.</p>
       <p><span class="label">Diet:</span> Grasses, shrubs.</p>
       <p><span class="label">Life Span:</span> 6–8 years in the wild.</p>
       <p><span class="label">Conditions:</span> Joint pain, infections, digestive issues.</p>
@@ -409,6 +426,7 @@
     <!-- 13. Tortoises -->
     <div class="animal-entry">
       <h2>13. Tortoises</h2>
+      <p><span class="label">Description:</span> Tortoises are land-dwelling reptiles with protective shells, found in various warm regions.</p>
       <p><span class="label">Diet:</span> Grasses, leaves, fruits.</p>
       <p><span class="label">Life Span:</span> 50–100+ years in the wild.</p>
       <p><span class="label">Conditions:</span> Liver issues, inflammation, infections.</p>
@@ -426,6 +444,7 @@
     <!-- 14. Antelopes -->
     <div class="animal-entry">
       <h2>14. Antelopes</h2>
+      <p><span class="label">Description:</span> Antelopes are swift, horned or antlered mammals grazing across African and Asian grasslands.</p>
       <p><span class="label">Diet:</span> Grasses, shrubs, bushes.</p>
       <p><span class="label">Life Span:</span> 10–25 years in the wild.</p>
       <p><span class="label">Conditions:</span> Parasites, digestive issues, infections.</p>
@@ -443,6 +462,7 @@
     <!-- 15. Moose -->
     <div class="animal-entry">
       <h2>15. Moose</h2>
+      <p><span class="label">Description:</span> Moose are large deer species of North America and Eurasia, often found in wetlands and forests.</p>
       <p><span class="label">Diet:</span> Leaves, bark, aquatic plants, twigs.</p>
       <p><span class="label">Life Span:</span> 15–25 years in the wild.</p>
       <p><span class="label">Conditions:</span> Joint pain, infections, digestive issues.</p>
@@ -461,6 +481,7 @@
     <!-- 16. Okapi -->
     <div class="animal-entry">
       <h2>16. Okapi</h2>
+      <p><span class="label">Description:</span> Okapis are elusive, zebra-striped relatives of giraffes, dwelling in African rainforests.</p>
       <p><span class="label">Diet:</span> Leaves, buds, fruits, ferns.</p>
       <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
       <p><span class="label">Conditions:</span> Parasites, skin infections, stress.</p>
@@ -479,6 +500,7 @@
     <!-- 17. Capybara -->
     <div class="animal-entry">
       <h2>17. Capybara</h2>
+      <p><span class="label">Description:</span> Capybaras are the world’s largest rodents, living near South American waterways in social groups.</p>
       <p><span class="label">Diet:</span> Grasses, aquatic plants, bark, fruits.</p>
       <p><span class="label">Life Span:</span> 8–10 years in the wild.</p>
       <p><span class="label">Conditions:</span> Skin irritation, digestive issues, infections.</p>
@@ -497,6 +519,7 @@
     <!-- 18. Deer -->
     <div class="animal-entry">
       <h2>18. Deer</h2>
+      <p><span class="label">Description:</span> Deer are graceful mammals with antlers (in males), found in forests and grasslands worldwide.</p>
       <p><span class="label">Diet:</span> Grasses, leaves, twigs, fruits.</p>
       <p><span class="label">Life Span:</span> 6–14 years in the wild.</p>
       <p><span class="label">Conditions:</span> Parasites, wounds, digestive issues.</p>
@@ -515,6 +538,7 @@
     <!-- 19. Wildebeest -->
     <div class="animal-entry">
       <h2>19. Wildebeest</h2>
+      <p><span class="label">Description:</span> Wildebeest are African antelopes known for their massive migrations across savanna grasslands.</p>
       <p><span class="label">Diet:</span> Grasses, leaves, shrubs.</p>
       <p><span class="label">Life Span:</span> 10–15 years in the wild.</p>
       <p><span class="label">Conditions:</span> Parasites, infections, joint pain.</p>
@@ -533,6 +557,7 @@
     <!-- 20. Tapir -->
     <div class="animal-entry">
       <h2>20. Tapir</h2>
+      <p><span class="label">Description:</span> Tapirs are pig-like herbivores with short trunks, roaming forests and wetlands of Central and South America.</p>
       <p><span class="label">Diet:</span> Leaves, fruits, twigs, aquatic plants.</p>
       <p><span class="label">Life Span:</span> 25–30 years in the wild.</p>
       <p><span class="label">Conditions:</span> Skin infections, digestive issues, wounds.</p>
@@ -551,6 +576,7 @@
     <!-- 21. Manatee -->
     <div class="animal-entry">
       <h2>21. Manatee</h2>
+      <p><span class="label">Description:</span> Manatees are gentle, aquatic herbivores grazing on seagrasses in warm coastal waters.</p>
       <p><span class="label">Diet:</span> Seagrasses, aquatic plants, algae.</p>
       <p><span class="label">Life Span:</span> 40–60 years in the wild.</p>
       <p><span class="label">Conditions:</span> Skin infections, digestive issues, wounds.</p>
@@ -569,6 +595,7 @@
     <!-- 22. Iguana -->
     <div class="animal-entry">
       <h2>22. Iguana</h2>
+      <p><span class="label">Description:</span> Iguanas are large, herbivorous lizards basking in tropical regions of the Americas.</p>
       <p><span class="label">Diet:</span> Leaves, flowers, fruits.</p>
       <p><span class="label">Life Span:</span> 10–20 years in the wild.</p>
       <p><span class="label">Conditions:</span> Infections, digestive issues, stress.</p>
@@ -586,10 +613,6 @@
   </div>
 
   <footer>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search for an animal..." />
-      <button onclick="searchAnimals()">Search</button>
-    </div>
     <p>Curated by Kofi Fosu — Cosmos Coderr</p>
   </footer>
 
