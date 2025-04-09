@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kofi’s Cosmic Animal Codex</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+      color: #e0e1dd;
+      line-height: 1.8;
+      padding: 2rem;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(26, 60, 52, 0.9);
+      color: #e63946;
+      text-align: center;
+      padding: 3rem 1rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(230, 57, 70, 0.2), transparent);
+      animation: pulse 10s infinite;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px #e63946;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      font-style: italic;
+      opacity: 0.85;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      position: relative;
+    }
+
+    .search-bar {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      position: sticky;
+      top: 1rem;
+      z-index: 10;
+    }
+
+    .search-bar input {
+      padding: 0.8rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      width: 250px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #e0e1dd;
+      box-shadow: inset 0 0 5px rgba(230, 57, 70, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 0 0 15px rgba(230, 57, 70, 0.7);
+    }
+
+    .search-bar button {
+      background: #e63946;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background: #f4a261;
+      box-shadow: 0 0 20px rgba(244, 162, 97, 0.8);
+    }
+
+    .animal-entry {
+      background: rgba(27, 38, 59, 0.85);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .animal-entry::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(230, 57, 70, 0.1), rgba(244, 162, 97, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .animal-entry:hover::before {
+      opacity: 1;
+    }
+
+    .animal-entry.hidden {
+      display: none;
+    }
+
+    .animal-entry h2 {
+      font-size: 2.2rem;
+      color: #e63946;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 5px rgba(230, 57, 70, 0.5);
+    }
+
+    .animal-entry p {
+      font-size: 1.2rem;
+      margin: 0.8rem 0;
+    }
+
+    .label {
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #f4a261;
+      letter-spacing: 1px;
+    }
+
+    .animal-entry ul {
+      list-style-type: none;
+      margin: 1rem 0 1rem 1rem;
+    }
+
+    .animal-entry li {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .animal-entry li::before {
+      content: '🌿';
+      position: absolute;
+      left: 0;
+      color: #95e8d3;
+    }
+
+    .collapse-button {
+      background: #e63946;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: block;
+      margin: 1.5rem auto 0;
+      box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .collapse-button:hover {
+      background: #f4a261;
+      transform: scale(1.05);
+    }
+
+    .details {
+      display: none;
+      background: rgba(149, 232, 211, 0.2);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      font-style: italic;
+      color: #e0e1dd;
+      box-shadow: inset 0 0 10px rgba(149, 232, 211, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #95e8d3;
+      font-size: 1.1rem;
+      text-shadow: 0 0 5px rgba(149, 232, 211, 0.5);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 2rem; }
+      header p { font-size: 1rem; }
+      .animal-entry h2 { font-size: 1.8rem; }
+      .animal-entry p, .animal-entry li { font-size: 1rem; }
+      .search-bar input { width: 180px; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Kofi’s Cosmic Animal Codex</h1>
+    <p>Unveiling the Galactic Secrets of Nature’s Healers</p>
+  </header>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Seek an animal’s wisdom..." />
+      <button onclick="searchAnimals()">Explore</button>
+    </div>
+
+    <!-- 1. Elephants -->
+    <div class="animal-entry">
+      <h2>1. Elephants</h2>
+      <p><span class="label">Description:</span> Majestic giants of Africa and Asia, revered for their intelligence, memory, and intricate social structures.</p>
+      <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia tortilis leaves and young shoots, Adansonia digitata (Baobab) fruit pulp and bark, Sclerocarya birrea (Marula) ripe fruit.</p>
+      <p><span class="label">Life Span:</span> 60–70 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Intestinal parasites, bacterial skin infections, chronic joint inflammation, dehydration, dental abscesses.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Acacia tortilis: Tannins combat Ascaris worms; leaves and bark ingested.</li>
+        <li>Adansonia digitata (Baobab): Antibacterial flavonoids heal Staphylococcus infections; fruit pulp and bark consumed.</li>
+        <li>Sclerocarya birrea (Marula): Anti-inflammatory triterpenes reduce joint swelling; ripe fruit pulp eaten.</li>
+        <li>Ficus sycomorus (Sycamore Fig): Hydrating latex prevents dehydration; leaves and fruit ingested.</li>
+        <li>Aloe vera: Antibacterial gel soothes dental abscesses; sap consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('elephantDetails')">Unlock Secrets</button>
+      <div id="elephantDetails" class="details">
+        <p>Elephants traverse continents, their trunks unearthing botanical pharmacies beneath the savanna’s canopy.</p>
+      </div>
+    </div>
+
+    <!-- 2. Rhinoceroses -->
+    <div class="animal-entry">
+      <h2>2. Rhinoceroses</h2>
+      <p><span class="label">Description:</span> Armored titans of Africa and Asia, wielding horns as symbols of resilience.</p>
+      <p><span class="label">Diet:</span> Digitaria eriantha (Smuts finger grass) blades, Euphorbia ingens succulent leaves, Commiphora africana bark, Themeda triandra (Red grass) shoots.</p>
+      <p><span class="label">Life Span:</span> 35–50 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Open wounds, osteoarthritis, dysbiosis, fungal infections, respiratory distress.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Euphorbia ingens: Anti-inflammatory latex eases osteoarthritis; leaves consumed.</li>
+        <li>Commiphora africana: Antibacterial myrrh resin heals wounds; bark ingested.</li>
+        <li>Digitaria eriantha: Prebiotic fibers restore gut flora; blades eaten.</li>
+        <li>Aloe ferox: Antifungal saponins treat Trichophyton infections; leaves grazed.</li>
+        <li>Sansevieria hyacinthoides: De anxiolytic compounds relieve respiratory distress; leaves ingested.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('rhinoDetails')">Unlock Secrets</button>
+      <div id="rhinoDetails" class="details">
+        <p>Rhinos forge paths through thorns, their diets a fortress against nature’s assaults.</p>
+      </div>
+    </div>
+
+    <!-- 3. Bison -->
+    <div class="animal-entry">
+      <h2>3. Bison</h2>
+      <p><span class="label">Description:</span> Rugged monarchs of North American plains, embodying raw endurance.</p>
+      <p><span class="label">Diet:</span> Bouteloua gracilis (Blue grama) blades, Artemisia ludoviciana (Prairie sage) leaves, Achillea millefolium (Yarrow) shoots, Asclepias syriaca (Milkweed) tender leaves.</p>
+      <p><span class="label">Life Span:</span> 15–20 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Respiratory infections, lacerations, liver congestion, parasite overload, hypothermia.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Artemisia ludoviciana (Prairie Sage): Antibacterial terpenes clear Streptococcus infections; leaves consumed.</li>
+        <li>Achillea millefolium (Yarrow): Hemostatic flavonoids seal cuts; shoots eaten.</li>
+        <li>Asclepias syriaca (Milkweed): Hepatoprotective glycosides detoxify liver; leaves ingested.</li>
+        <li>Echinacea angustifolia: Antiparasitic alkamides reduce Strongyloides; roots grazed.</li>
+        <li>Solidago virgaurea (Goldenrod): Warming diuretics combat hypothermia; leaves consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('bisonDetails')">Unlock Secrets</button>
+      <div id="bisonDetails" class="details">
+        <p>Bison thunder across prairies, their herbal arsenal fortifying their shaggy might.</p>
+      </div>
+    </div>
+
+    <!-- 4. Hippopotamuses -->
+    <div class="animal-entry">
+      <h2>4. Hippopotamuses</h2>
+      <p><span class="label">Description:</span> Semi-aquatic behemoths of Africa, masters of rivers and lakes.</p>
+      <p><span class="label">Diet:</span> Vossia cuspidata (Hippo grass) blades, Cyperus papyrus shoots, Nymphaea caerulea (Water lily) leaves, Paspalum scrobiculatum tender stems.</p>
+      <p><span class="label">Life Span:</span> 40–50 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Skin irritation, dyspepsia, bacterial infections, heat stress, parasites.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Cyperus papyrus: Anti-inflammatory sesquiterpenes soothe skin irritation; shoots consumed.</li>
+        <li>Vossia cuspidata: Fiber-rich blades aid digestion; grazed extensively.</li>
+        <li>Nymphaea caerulea: Antibacterial flavonoids fight Escherichia coli; leaves ingested.</li>
+        <li>Aloe barbadensis: Cooling gel reduces heat stress; sap consumed.</li>
+        <li>Azadirachta indica (Neem): Antiparasitic limonoids deter ticks; leaves eaten.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('hippoDetails')">Unlock Secrets</button>
+      <div id="hippoDetails" class="details">
+        <p>Hippos reign over waterways, their plant feasts a balm for their aquatic lives.</p>
+      </div>
+    </div>
+
+    <!-- 5. Gorillas -->
+    <div class="animal-entry">
+      <h2>5. Gorillas</h2>
+      <p><span class="label">Description:</span> Forest-dwelling primates of Africa, bound by deep social ties.</p>
+      <p><span class="label">Diet:</span> Vernonia amygdalina leaves, Aframomum melegueta fruits, Cecropia peltata shoots, Musanga cecropioides bark.</p>
+      <p><span class="label">Life Span:</span> 35–40 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Gastrointestinal distress, joint inflammation, stress, parasites, viral infections.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Vernonia amygdalina: Anti-inflammatory sesquiterpene lactones ease joints and digestion; leaves consumed.</li>
+        <li>Aframomum melegueta: Gingerol aids digestion and calms stress; fruits eaten.</li>
+        <li>Cecropia peltata: Antioxidant flavonoids bolster immunity; shoots ingested.</li>
+        <li>Alstonia boonei: Antiparasitic alkaloids reduce tapeworms; bark consumed.</li>
+        <li>Morinda lucida: Antiviral anthraquinones fight simian viruses; leaves eaten.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('gorillaDetails')">Unlock Secrets</button>
+      <div id="gorillaDetails" class="details">
+        <p>Gorillas weave through jungles, their diets a tapestry of healing and strength.</p>
+      </div>
+    </div>
+
+    <!-- 6. Zebras -->
+    <div class="animal-entry">
+      <h2>6. Zebras</h2>
+      <p><span class="label">Description:</span> Striped wanderers of African savannas, thriving in migratory herds.</p>
+      <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Digitaria eriantha shoots, Acacia senegal leaves, Themeda triandra tender stems.</p>
+      <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, cutaneous wounds, dysbiosis, dehydration, anemia.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Cynodon dactylon: Antiparasitic lignans deter nematodes; blades grazed.</li>
+        <li>Acacia senegal: Tannins heal Staphylococcus wounds; leaves consumed.</li>
+        <li>Digitaria eriantha: Prebiotic fibers restore gut flora; shoots eaten.</li>
+        <li>Ficus thonningii: Hydrating latex combats dehydration; leaves ingested.</li>
+        <li>Sorghum bicolor: Iron-rich shoots boost hemoglobin; tender stems grazed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('zebraDetails')">Unlock Secrets</button>
+      <div id="zebraDetails" class="details">
+        <p>Zebras gallop with stripes aglow, their plant diet a shield of vitality.</p>
+      </div>
+    </div>
+
+    <!-- 7. Giraffes -->
+    <div class="animal-entry">
+      <h2>7. Giraffes</h2>
+      <p><span class="label">Description:</span> Towering sentinels of African savannas, browsing treetops with elegance.</p>
+      <p><span class="label">Diet:</span> Acacia tortilis leaves, Mimosa pudica shoots, Commiphora africana bark, Balanites aegyptiaca fruit pulp.</p>
+      <p><span class="label">Life Span:</span> 25–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Joint stiffness, wounds, parasites, gingivitis, heat stress.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Acacia tortilis: Tannins reduce Strongyloides parasites; leaves consumed.</li>
+        <li>Mimosa pudica: Anti-inflammatory alkaloids ease joint stiffness; shoots eaten.</li>
+        <li>Commiphora africana: Antibacterial resin heals wounds; bark ingested.</li>
+        <li>Salvadora persica: Antibacterial quinones soothe gums; twigs chewed.</li>
+        <li>Aloe secundiflora: Cooling gel mitigates heat stress; sap consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('giraffeDetails')">Unlock Secrets</button>
+      <div id="giraffeDetails" class="details">
+        <p>Giraffes stretch toward the heavens, their leafy feasts a lifeline of resilience.</p>
+      </div>
+    </div>
+
+    <!-- 8. Camels -->
+    <div class="animal-entry">
+      <h2>8. Camels</h2>
+      <p><span class="label">Description:</span> Desert nomads with humps of endurance, thriving in arid wastelands.</p>
+      <p><span class="label">Diet:</span> Acacia nilotica thorny leaves, Tamarix aphylla shoots, Salsola imbricata succulent stems, Prosopis cineraria bark.</p>
+      <p><span class="label">Life Span:</span> 40–50 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Bacterial infections, dyspepsia, dehydration, sand irritation, fatigue.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Acacia nilotica: Antibacterial tannins fight Salmonella; leaves consumed.</li>
+        <li>Tamarix aphylla: Carminative phenols aid digestion; shoots eaten.</li>
+        <li>Salsola imbricata: Hydrating succulence prevents dehydration; stems ingested.</li>
+        <li>Calotropis procera: Anti-inflammatory latex soothes sand irritation; leaves grazed.</li>
+        <li>Citrullus colocynthis: Energy-boosting cucurbitacins reduce fatigue; fruit pulp consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('camelDetails')">Unlock Secrets</button>
+      <div id="camelDetails" class="details">
+        <p>Camels conquer deserts, their plant diet a shield against relentless sands.</p>
+      </div>
+    </div>
+
+    <!-- 9. Pandas -->
+    <div class="animal-entry">
+      <h2>9. Pandas</h2>
+      <p><span class="label">Description:</span> Monochrome bears of Chinese highlands, bamboo connoisseurs.</p>
+      <p><span class="label">Diet:</span> Phyllostachys aurea (Golden bamboo) shoots, Bashania fargesii leaves, Dioscorea opposita (Wild yam) tubers, Prunus salicina fruit pulp.</p>
+      <p><span class="label">Life Span:</span> 15–20 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Dysbiosis, inflammation, lethargy, dental caries, parasites.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Phyllostachys aurea: Fiber-rich shoots restore gut flora; consumed daily.</li>
+        <li>Bashania fargesii: Anti-inflammatory lignans reduce swelling; leaves eaten.</li>
+        <li>Dioscorea opposita: Energy-boosting starches combat lethargy; tubers ingested.</li>
+        <li>Ligustrum lucidum: Antibacterial flavonoids treat caries; fruit consumed.</li>
+        <li>Artemisia annua: Antiparasitic artemisinin deters roundworms; leaves grazed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('pandaDetails')">Unlock Secrets</button>
+      <div id="pandaDetails" class="details">
+        <p>Pandas lounge in bamboo groves, their diet a gentle balm for their serene lives.</p>
+      </div>
+    </div>
+
+    <!-- 10. Sloths -->
+    <div class="animal-entry">
+      <h2>10. Sloths</h2>
+      <p><span class="label">Description:</span> Leisurely arboreal dwellers of Central and South American rainforests.</p>
+      <p><span class="label">Diet:</span> Cecropia peltata leaves, Mimosa pudica shoots, Inga vera bark, Clusia rosea tender leaves.</p>
+      <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Slow metabolism, bacterial infections, inflammation, fungal growth, stress.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Cecropia peltata: Antioxidant flavonoids boost metabolism; leaves consumed.</li>
+        <li>Mimosa pudica: Anti-inflammatory alkaloids reduce swelling; shoots eaten.</li>
+        <li>Inga vera: Antibacterial tannins fight Pseudomonas; bark ingested.</li>
+        <li>Piper aduncum: Antifungal piperine treats Candida; leaves grazed.</li>
+        <li>Passiflora edulis: Calming flavonoids ease stress; leaves consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('slothDetails')">Unlock Secrets</button>
+      <div id="slothDetails" class="details">
+        <p>Sloths drift through canopies, their leafy diets a slow dance of healing.</p>
+      </div>
+    </div>
+
+    <!-- 11. Koalas -->
+    <div class="animal-entry">
+      <h2>11. Koalas</h2>
+      <p><span class="label">Description:</span> Eucalyptus-bound marsupials of Australian woodlands.</p>
+      <p><span class="label">Diet:</span> Eucalyptus globulus leaves, Eucalyptus camaldulensis shoots, Eucalyptus viminalis tender leaves.</p>
+      <p><span class="label">Life Span:</span> 10–15 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Chlamydia infections, dyspepsia, stress, dehydration, respiratory issues.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Eucalyptus globulus: Antibacterial cineole fights Chlamydia; leaves consumed.</li>
+        <li>Eucalyptus camaldulensis: Fiber-rich shoots aid digestion; eaten daily.</li>
+        <li>Eucalyptus viminalis: Calming terpenes reduce stress; tender leaves ingested.</li>
+        <li>Melaleuca alternifolia: Hydrating oils prevent dehydration; leaves grazed.</li>
+        <li>Leptospermum scoparium: Decongestant flavonoids ease breathing; leaves consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('koalaDetails')">Unlock Secrets</button>
+      <div id="koalaDetails" class="details">
+        <p>Koalas cling to treetops, their eucalyptus diet a soothing elixir.</p>
+      </div>
+    </div>
+
+    <!-- 12. Kangaroos -->
+    <div class="animal-entry">
+      <h2>12. Kangaroos</h2>
+      <p><span class="label">Description:</span> Bounding marsupials of Australian outback, pouch-bearing dynamos.</p>
+      <p><span class="label">Diet:</span> Themeda triandra (Kangaroo grass) blades, Acacia aneura leaves, Atriplex nummularia (Saltbush) shoots, Chloris gayana tender stems.</p>
+      <p><span class="label">Life Span:</span> 6–8 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Joint strain, bacterial infections, dysbiosis, heat exhaustion, parasites.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Themeda triandra: Anti-inflammatory lignans ease joint strain; blades grazed.</li>
+        <li>Acacia aneura: Antibacterial tannins fight Staphylococcus; leaves consumed.</li>
+        <li>Atriplex nummularia: Prebiotic fibers restore gut flora; shoots eaten.</li>
+        <li>Santalum spicatum: Cooling oils mitigate heat exhaustion; bark ingested.</li>
+        <li>Eremophila longifolia: Antiparasitic alkaloids deter ticks; leaves grazed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('kangarooDetails')">Unlock Secrets</button>
+      <div id="kangarooDetails" class="details">
+        <p>Kangaroos leap across plains, their plant diet fueling boundless energy.</p>
+      </div>
+    </div>
+
+    <!-- 13. Tortoises -->
+    <div class="animal-entry">
+      <h2>13. Tortoises</h2>
+      <p><span class="label">Description:</span> Shelled wanderers of warm terrains, ancient survivors.</p>
+      <p><span class="label">Diet:</span> Opuntia ficus-indica (Prickly pear) fruit pulp, Plantago ovata leaves, Morus alba (Mulberry) tender shoots, Cynodon dactylon blades.</p>
+      <p><span class="label">Life Span:</span> 50–100+ years in the wild.</p>
+      <p><span class="label">Conditions:</span> Liver toxicity, inflammation, bacterial infections, shell rot, dehydration.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Opuntia ficus-indica: Hepatoprotective mucilage detoxifies liver; fruit pulp consumed.</li>
+        <li>Plantago ovata: Anti-inflammatory mucilage reduces swelling; leaves eaten.</li>
+        <li>Morus alba: Antibacterial flavonoids fight Salmonella; shoots ingested.</li>
+        <li>Aloe vera: Antifungal gel treats shell rot; sap consumed.</li>
+        <li>Salsola kali: Hydrating succulence prevents dehydration; stems grazed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('tortoiseDetails')">Unlock Secrets</button>
+      <div id="tortoiseDetails" class="details">
+        <p>Tortoises plod through time, their plant diet an elixir of longevity.</p>
+      </div>
+    </div>
+
+    <!-- 14. Antelopes -->
+    <div class="animal-entry">
+      <h2>14. Antelopes</h2>
+      <p><span class="label">Description:</span> Swift grazers of African and Asian grasslands, agile and horned.</p>
+      <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia seyal leaves, Combretum collinum shoots, Themeda triandra tender stems.</p>
+      <p><span class="label">Life Span:</span> 10–25 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, dyspepsia, bacterial infections, exhaustion, wounds.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Cynodon dactylon: Antiparasitic lignans deter nematodes; blades grazed.</li>
+        <li>Acacia seyal: Carminative tannins aid digestion; leaves consumed.</li>
+        <li>Combretum collinum: Antibacterial flavonoids fight Escherichia coli; shoots eaten.</li>
+        <li>Terminalia catappa: Energy-boosting tannins reduce fatigue; leaves ingested.</li>
+        <li>Ziziphus mauritiana: Hemostatic compounds heal wounds; fruit pulp consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('antelopeDetails')">Unlock Secrets</button>
+      <div id="antelopeDetails" class="details">
+        <p>Antelopes sprint with grace, their plant diet a fountain of vigor.</p>
+      </div>
+    </div>
+
+    <!-- 15. Moose -->
+    <div class="animal-entry">
+      <h2>15. Moose</h2>
+      <p><span class="label">Description:</span> Towering deer of North American and Eurasian wetlands, antlered giants.</p>
+      <p><span class="label">Diet:</span> Salix alba (Willow) leaves, Betula pendula (Birch) bark, Menyanthes trifoliata shoots, Nymphaea alba (Water lily) tender leaves.</p>
+      <p><span class="label">Life Span:</span> 15–25 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Joint pain, bacterial infections, dysbiosis, hypothermia, parasites.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Salix alba: Anti-inflammatory salicin eases joint pain; leaves consumed.</li>
+        <li>Betula pendula: Antibacterial betulin fights Streptococcus; bark ingested.</li>
+        <li>Menyanthes trifoliata: Prebiotic bitters restore gut flora; shoots eaten.</li>
+        <li>Hypericum perforatum: Warming flavonoids combat hypothermia; leaves grazed.</li>
+        <li>Artemisia vulgaris: Antiparasitic sesquiterpenes deter ticks; leaves consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('mooseDetails')">Unlock Secrets</button>
+      <div id="mooseDetails" class="details">
+        <p>Moose wade through marshes, their plant diet a bulwark against the cold.</p>
+      </div>
+    </div>
+
+    <!-- 16. Okapi -->
+    <div class="animal-entry">
+      <h2>16. Okapi</h2>
+      <p><span class="label">Description:</span> Elusive, zebra-striped kin of giraffes, hidden in African rainforests.</p>
+      <p><span class="label">Diet:</span> Vernonia amygdalina leaves, Sclerocarya birrea (Marula) fruit pulp, Aframomum melegueta shoots, Polypodium vulgare ferns.</p>
+      <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, skin infections, stress, fungal growth, dyspepsia.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Vernonia amygdalina: Antiparasitic lactones reduce tapeworms; leaves consumed.</li>
+        <li>Sclerocarya birrea: Antibacterial triterpenes heal dermatophytes; fruit pulp eaten.</li>
+        <li>Aframomum melegueta: Calming gingerol eases stress; shoots ingested.</li>
+        <li>Piper nigrum: Antifungal piperine treats Aspergillus; leaves grazed.</li>
+        <li>Milicia excelsa: Carminative tannins aid digestion; bark consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('okapiDetails')">Unlock Secrets</button>
+      <div id="okapiDetails" class="details">
+        <p>Okapis glide through shadows, their plant diet a cloak of resilience.</p>
+      </div>
+    </div>
+
+    <!-- 17. Capybara -->
+    <div class="animal-entry">
+      <h2>17. Capybara</h2>
+      <p><span class="label">Description:</span> Sociable giants of South American waterways, the world’s largest rodents.</p>
+      <p><span class="label">Diet:</span> Paspalum notatum (Bahia grass) blades, Eichhornia crassipes (Water hyacinth) leaves, Cecropia pachystachya shoots, Hymenachne amplexicaulis tender stems.</p>
+      <p><span class="label">Life Span:</span> 8–10 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Skin irritation, dysbiosis, bacterial infections, heat stress, parasites.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Eichhornia crassipes: Anti-inflammatory flavonoids soothe skin; leaves consumed.</li>
+        <li>Paspalum notatum: Prebiotic fibers restore gut flora; blades grazed.</li>
+        <li>Cecropia pachystachya: Antibacterial tannins fight Salmonella; shoots eaten.</li>
+        <li>Aloe arborescens: Cooling gel mitigates heat stress; sap ingested.</li>
+        <li>Azadirachta indica: Antiparasitic limonoids deter fleas; leaves consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('capybaraDetails')">Unlock Secrets</button>
+      <div id="capybaraDetails" class="details">
+        <p>Capybaras bask by rivers, their plant diet a serene shield of health.</p>
+      </div>
+    </div>
+
+    <!-- 18. Deer -->
+    <div class="animal-entry">
+      <h2>18. Deer</h2>
+      <p><span class="label">Description:</span> Graceful forest dwellers with antlers, roaming woodlands globally.</p>
+      <p><span class="label">Diet:</span> Poa pratensis (Kentucky bluegrass) blades, Quercus robur (Oak) leaves, Salix caprea (Willow) shoots, Rubus idaeus (Raspberry) tender stems.</p>
+      <p><span class="label">Life Span:</span> 6–14 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, wounds, dysbiosis, hypothermia, stress.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Achillea millefolium (Yarrow): Antiparasitic flavonoids reduce ticks; leaves consumed.</li>
+        <li>Salix caprea: Anti-inflammatory salicin heals wounds; shoots eaten.</li>
+        <li>Quercus robur: Prebiotic tannins restore gut flora; leaves ingested.</li>
+        <li>Urtica dioica (Nettle): Warming histamines combat hypothermia; leaves grazed.</li>
+        <li>Valeriana officinalis: Calming valerenic acid eases stress; roots consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('deerDetails')">Unlock Secrets</button>
+      <div id="deerDetails" class="details">
+        <p>Deer dance through forests, their plant diet a symphony of survival.</p>
+      </div>
+    </div>
+
+    <!-- 19. Wildebeest -->
+    <div class="animal-entry">
+      <h2>19. Wildebeest</h2>
+      <p><span class="label">Description:</span> Migratory antelopes of African savannas, thundering in vast herds.</p>
+      <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia tortilis leaves, Combretum imberbe shoots, Themeda triandra tender stems.</p>
+      <p><span class="label">Life Span:</span> 10–15 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, bacterial infections, joint strain, dehydration, exhaustion.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Cynodon dactylon: Antiparasitic lignans deter nematodes; blades grazed.</li>
+        <li>Acacia tortilis: Antibacterial tannins fight Escherichia coli; leaves consumed.</li>
+        <li>Combretum imberbe: Anti-inflammatory flavonoids ease joint strain; shoots eaten.</li>
+        <li>Ficus sur: Hydrating latex prevents dehydration; fruit pulp ingested.</li>
+        <li>Terminalia sericea: Energy-boosting tannins reduce fatigue; leaves consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('wildebeestDetails')">Unlock Secrets</button>
+      <div id="wildebeestDetails" class="details">
+        <p>Wildebeest surge across plains, their plant diet a pulse of endurance.</p>
+      </div>
+    </div>
+
+    <!-- 20. Tapir -->
+    <div class="animal-entry">
+      <h2>20. Tapir</h2>
+      <p><span class="label">Description:</span> Trunked herbivores of Central and South American forests, nocturnal foragers.</p>
+      <p><span class="label">Diet:</span> Cecropia peltata leaves, Psidium guajava (Guava) fruit pulp, Plantago major shoots, Inga edulis tender stems.</p>
+      <p><span class="label">Life Span:</span> 25–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Skin infections, dyspepsia, wounds, parasites, stress.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Cecropia peltata: Antibacterial flavonoids fight Staphylococcus; leaves consumed.</li>
+        <li>Psidium guajava: Carminative catechins aid digestion; fruit pulp eaten.</li>
+        <li>Plantago major: Hemostatic mucilage heals wounds; shoots ingested.</li>
+        <li>Piper aduncum: Antiparasitic piperine deters roundworms; leaves grazed.</li>
+        <li>Passiflora quadrangularis: Calming flavonoids ease stress; leaves consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('tapirDetails')">Unlock Secrets</button>
+      <div id="tapirDetails" class="details">
+        <p>Tapirs roam twilight forests, their plant diet a balm for their quiet lives.</p>
+      </div>
+    </div>
+
+    <!-- 21. Manatee -->
+    <div class="animal-entry">
+      <h2>21. Manatee</h2>
+      <p><span class="label">Description:</span> Gentle sea cows of warm coastal waters, grazing on aquatic bounty.</p>
+      <p><span class="label">Diet:</span> Thalassia testudinum (Turtle grass) blades, Syringodium filiforme shoots, Halodule wrightii tender stems, Ruppia maritima leaves.</p>
+      <p><span class="label">Life Span:</span> 40–60 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Skin infections, dysbiosis, wounds, boat injuries, dehydration.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Thalassia testudinum: Antibacterial phenolics fight Vibrio; blades consumed.</li>
+        <li>Syringodium filiforme: Prebiotic fibers restore gut flora; shoots eaten.</li>
+        <li>Halodule wrightii: Hemostatic compounds heal wounds; tender stems ingested.</li>
+        <li>Zostera marina: Anti-inflammatory lignans soothe boat injuries; leaves grazed.</li>
+        <li>Cymodocea nodosa: Hydrating polysaccharides prevent dehydration; leaves consumed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('manateeDetails')">Unlock Secrets</button>
+      <div id="manateeDetails" class="details">
+        <p>Manatees drift through seas, their plant diet a buoyant shield of peace.</p>
+      </div>
+    </div>
+
+    <!-- 22. Iguana -->
+    <div class="animal-entry">
+      <h2>22. Iguana</h2>
+      <p><span class="label">Description:</span> Sun-basking lizards of tropical Americas, vibrant and herbivorous.</p>
+      <p><span class="label">Diet:</span> Hibiscus rosa-sinensis leaves, Psidium guajava (Guava) fruit pulp, Passiflora edulis shoots, Opuntia cochenillifera tender pads.</p>
+      <p><span class="label">Life Span:</span> 10–20 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Bacterial infections, dyspepsia, stress, dehydration, parasites.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Hibiscus rosa-sinensis: Antibacterial flavonoids fight Salmonella; leaves consumed.</li>
+        <li>Psidium guajava: Carminative catechins aid digestion; fruit pulp eaten.</li>
+        <li>Passiflora edulis: Calming flavonoids ease stress; shoots ingested.</li>
+        <li>Opuntia cochenillifera: Hydrating mucilage prevents dehydration; pads consumed.</li>
+        <li>Azadirachta indica: Antiparasitic limonoids deter mites; leaves grazed.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('iguanaDetails')">Unlock Secrets</button>
+      <div id="iguanaDetails" class="details">
+        <p>Iguanas bask in sunlight, their plant diet a vibrant cloak of health.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Curated by Kofi Fosu — Cosmos Coderr | Powered by xAI</p>
+  </footer>
+
+  <script>
+    function toggleDetails(id) {
+      const element = document.getElementById(id);
+      const isVisible = element.style.display === 'block';
+      element.style.display = isVisible ? 'none' : 'block';
+      element.classList.toggle('fade-in', !isVisible);
+    }
+
+    function searchAnimals() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const entries = document.querySelectorAll('.animal-entry');
+
+      entries.forEach(entry => {
+        const animalName = entry.querySelector('h2').textContent.toLowerCase();
+        const isMatch = animalName.includes(searchTerm);
+        entry.classList.toggle('hidden', !isMatch);
+        if (isMatch) {
+          entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
+
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') searchAnimals();
+    });
+
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      .fade-in {
+        animation: fadeIn 0.5s ease-in;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+  </script>
+</body>
+</html>
