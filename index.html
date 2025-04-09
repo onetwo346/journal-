@@ -54,8 +54,7 @@
       display: flex;
       justify-content: center;
       gap: 1rem;
-      position: sticky;
-      top: 1rem;
+      position: relative; /* Changed from sticky to relative */
       z-index: 10;
     }
 
@@ -109,6 +108,14 @@
 
     .animal-entry.hidden {
       display: none;
+    }
+
+    .animal-entry img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
     }
 
     .animal-entry h2 {
@@ -209,6 +216,7 @@
       header p { font-size: 1rem; }
       .animal-entry h2 { font-size: 1.6rem; }
       .animal-entry p, .animal-entry li { font-size: 1rem; }
+      .animal-entry img { max-height: 150px; }
       .search-bar input { width: 200px; }
       .search-bar { flex-direction: column; align-items: center; }
       .search-bar button { width: 200px; }
@@ -230,6 +238,7 @@
 
     <!-- 1. Elephants -->
     <div class="animal-entry" data-animal="elephants">
+      <img src="https://via.placeholder.com/900x200?text=Elephant" alt="Elephant">
       <h2>1. Elephants</h2>
       <p><span class="label">Description:</span> Majestic giants of Africa and Asia, revered for their intelligence, memory, and intricate social structures.</p>
       <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia tortilis leaves and young shoots, Adansonia digitata (Baobab) fruit pulp and bark, Sclerocarya birrea (Marula) ripe fruit.</p>
@@ -251,6 +260,7 @@
 
     <!-- 2. Rhinoceroses -->
     <div class="animal-entry" data-animal="rhinoceroses">
+      <img src="https://via.placeholder.com/900x200?text=Rhinoceros" alt="Rhinoceros">
       <h2>2. Rhinoceroses</h2>
       <p><span class="label">Description:</span> Armored titans of Africa and Asia, wielding horns as symbols of resilience.</p>
       <p><span class="label">Diet:</span> Digitaria eriantha (Smuts finger grass) blades, Euphorbia ingens succulent leaves, Commiphora africana bark, Themeda triandra (Red grass) shoots.</p>
@@ -272,6 +282,7 @@
 
     <!-- 3. Bison -->
     <div class="animal-entry" data-animal="bison">
+      <img src="https://via.placeholder.com/900x200?text=Bison" alt="Bison">
       <h2>3. Bison</h2>
       <p><span class="label">Description:</span> Rugged monarchs of North American plains, embodying raw endurance.</p>
       <p><span class="label">Diet:</span> Bouteloua gracilis (Blue grama) blades, Artemisia ludoviciana (Prairie sage) leaves, Achillea millefolium (Yarrow) shoots, Asclepias syriaca (Milkweed) tender leaves.</p>
@@ -293,6 +304,7 @@
 
     <!-- 4. Hippopotamuses -->
     <div class="animal-entry" data-animal="hippopotamuses">
+      <img src="https://via.placeholder.com/900x200?text=Hippopotamus" alt="Hippopotamus">
       <h2>4. Hippopotamuses</h2>
       <p><span class="label">Description:</span> Semi-aquatic behemoths of Africa, masters of rivers and lakes.</p>
       <p><span class="label">Diet:</span> Vossia cuspidata (Hippo grass) blades, Cyperus papyrus shoots, Nymphaea caerulea (Water lily) leaves, Paspalum scrobiculatum tender stems.</p>
@@ -314,6 +326,7 @@
 
     <!-- 5. Gorillas -->
     <div class="animal-entry" data-animal="gorillas">
+      <img src="https://via.placeholder.com/900x200?text=Gorilla" alt="Gorilla">
       <h2>5. Gorillas</h2>
       <p><span class="label">Description:</span> Forest-dwelling primates of Africa, bound by deep social ties.</p>
       <p><span class="label">Diet:</span> Vernonia amygdalina leaves, Aframomum melegueta fruits, Cecropia peltata shoots, Musanga cecropioides bark.</p>
@@ -335,6 +348,7 @@
 
     <!-- 6. Zebras -->
     <div class="animal-entry" data-animal="zebras">
+      <img src="https://via.placeholder.com/900x200?text=Zebra" alt="Zebra">
       <h2>6. Zebras</h2>
       <p><span class="label">Description:</span> Striped wanderers of African savannas, thriving in migratory herds.</p>
       <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Digitaria eriantha shoots, Acacia senegal leaves, Themeda triandra tender stems.</p>
@@ -356,6 +370,7 @@
 
     <!-- 7. Giraffes -->
     <div class="animal-entry" data-animal="giraffes">
+      <img src="https://via.placeholder.com/900x200?text=Giraffe" alt="Giraffe">
       <h2>7. Giraffes</h2>
       <p><span class="label">Description:</span> Towering sentinels of African savannas, browsing treetops with elegance.</p>
       <p><span class="label">Diet:</span> Acacia tortilis leaves, Mimosa pudica shoots, Commiphora africana bark, Balanites aegyptiaca fruit pulp.</p>
@@ -377,6 +392,7 @@
 
     <!-- 8. Camels -->
     <div class="animal-entry" data-animal="camels">
+      <img src="https://via.placeholder.com/900x200?text=Camel" alt="Camel">
       <h2>8. Camels</h2>
       <p><span class="label">Description:</span> Desert nomads with humps of endurance, thriving in arid wastelands.</p>
       <p><span class="label">Diet:</span> Acacia nilotica thorny leaves, Tamarix aphylla shoots, Salsola imbricata succulent stems, Prosopis cineraria bark.</p>
@@ -398,6 +414,7 @@
 
     <!-- 9. Pandas -->
     <div class="animal-entry" data-animal="pandas">
+      <img src="https://via.placeholder.com/900x200?text=Panda" alt="Panda">
       <h2>9. Pandas</h2>
       <p><span class="label">Description:</span> Monochrome bears of Chinese highlands, bamboo connoisseurs.</p>
       <p><span class="label">Diet:</span> Phyllostachys aurea (Golden bamboo) shoots, Bashania fargesii leaves, Dioscorea opposita (Wild yam) tubers, Prunus salicina fruit pulp.</p>
@@ -419,6 +436,7 @@
 
     <!-- 10. Sloths -->
     <div class="animal-entry" data-animal="sloths">
+      <img src="https://via.placeholder.com/900x200?text=Sloth" alt="Sloth">
       <h2>10. Sloths</h2>
       <p><span class="label">Description:</span> Leisurely arboreal dwellers of Central and South American rainforests.</p>
       <p><span class="label">Diet:</span> Cecropia peltata leaves, Mimosa pudica shoots, Inga vera bark, Clusia rosea tender leaves.</p>
@@ -440,6 +458,7 @@
 
     <!-- 11. Koalas -->
     <div class="animal-entry" data-animal="koalas">
+      <img src="https://via.placeholder.com/900x200?text=Koala" alt="Koala">
       <h2>11. Koalas</h2>
       <p><span class="label">Description:</span> Eucalyptus-bound marsupials of Australian woodlands.</p>
       <p><span class="label">Diet:</span> Eucalyptus globulus leaves, Eucalyptus camaldulensis shoots, Eucalyptus viminalis tender leaves.</p>
@@ -461,6 +480,7 @@
 
     <!-- 12. Kangaroos -->
     <div class="animal-entry" data-animal="kangaroos">
+      <img src="https://via.placeholder.com/900x200?text=Kangaroo" alt="Kangaroo">
       <h2>12. Kangaroos</h2>
       <p><span class="label">Description:</span> Bounding marsupials of Australian outback, pouch-bearing dynamos.</p>
       <p><span class="label">Diet:</span> Themeda triandra (Kangaroo grass) blades, Acacia aneura leaves, Atriplex nummularia (Saltbush) shoots, Chloris gayana tender stems.</p>
@@ -482,6 +502,7 @@
 
     <!-- 13. Tortoises -->
     <div class="animal-entry" data-animal="tortoises">
+      <img src="https://via.placeholder.com/900x200?text=Tortoise" alt="Tortoise">
       <h2>13. Tortoises</h2>
       <p><span class="label">Description:</span> Shelled wanderers of warm terrains, ancient survivors.</p>
       <p><span class="label">Diet:</span> Opuntia ficus-indica (Prickly pear) fruit pulp, Plantago ovata leaves, Morus alba (Mulberry) tender shoots, Cynodon dactylon blades.</p>
@@ -503,6 +524,7 @@
 
     <!-- 14. Antelopes -->
     <div class="animal-entry" data-animal="antelopes">
+      <img src="https://via.placeholder.com/900x200?text=Antelope" alt="Antelope">
       <h2>14. Antelopes</h2>
       <p><span class="label">Description:</span> Swift grazers of African and Asian grasslands, agile and horned.</p>
       <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia seyal leaves, Combretum collinum shoots, Themeda triandra tender stems.</p>
@@ -524,6 +546,7 @@
 
     <!-- 15. Moose -->
     <div class="animal-entry" data-animal="moose">
+      <img src="https://via.placeholder.com/900x200?text=Moose" alt="Moose">
       <h2>15. Moose</h2>
       <p><span class="label">Description:</span> Towering deer of North American and Eurasian wetlands, antlered giants.</p>
       <p><span class="label">Diet:</span> Salix alba (Willow) leaves, Betula pendula (Birch) bark, Menyanthes trifoliata shoots, Nymphaea alba (Water lily) tender leaves.</p>
@@ -545,6 +568,7 @@
 
     <!-- 16. Okapi -->
     <div class="animal-entry" data-animal="okapi">
+      <img src="https://via.placeholder.com/900x200?text=Okapi" alt="Okapi">
       <h2>16. Okapi</h2>
       <p><span class="label">Description:</span> Elusive, zebra-striped kin of giraffes, hidden in African rainforests.</p>
       <p><span class="label">Diet:</span> Vernonia amygdalina leaves, Sclerocarya birrea (Marula) fruit pulp, Aframomum melegueta shoots, Polypodium vulgare ferns.</p>
@@ -566,6 +590,7 @@
 
     <!-- 17. Capybara -->
     <div class="animal-entry" data-animal="capybara">
+      <img src="https://via.placeholder.com/900x200?text=Capybara" alt="Capybara">
       <h2>17. Capybara</h2>
       <p><span class="label">Description:</span> Sociable giants of South American waterways, the world’s largest rodents.</p>
       <p><span class="label">Diet:</span> Paspalum notatum (Bahia grass) blades, Eichhornia crassipes (Water hyacinth) leaves, Cecropia pachystachya shoots, Hymenachne amplexicaulis tender stems.</p>
@@ -587,6 +612,7 @@
 
     <!-- 18. Deer -->
     <div class="animal-entry" data-animal="deer">
+      <img src="https://via.placeholder.com/900x200?text=Deer" alt="Deer">
       <h2>18. Deer</h2>
       <p><span class="label">Description:</span> Graceful forest dwellers with antlers, roaming woodlands globally.</p>
       <p><span class="label">Diet:</span> Poa pratensis (Kentucky bluegrass) blades, Quercus robur (Oak) leaves, Salix caprea (Willow) shoots, Rubus idaeus (Raspberry) tender stems.</p>
@@ -608,6 +634,7 @@
 
     <!-- 19. Wildebeest -->
     <div class="animal-entry" data-animal="wildebeest">
+      <img src="https://via.placeholder.com/900x200?text=Wildebeest" alt="Wildebeest">
       <h2>19. Wildebeest</h2>
       <p><span class="label">Description:</span> Migratory antelopes of African savannas, thundering in vast herds.</p>
       <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia tortilis leaves, Combretum imberbe shoots, Themeda triandra tender stems.</p>
@@ -629,6 +656,7 @@
 
     <!-- 20. Tapir -->
     <div class="animal-entry" data-animal="tapir">
+      <img src="https://via.placeholder.com/900x200?text=Tapir" alt="Tapir">
       <h2>20. Tapir</h2>
       <p><span class="label">Description:</span> Trunked herbivores of Central and South American forests, nocturnal foragers.</p>
       <p><span class="label">Diet:</span> Cecropia peltata leaves, Psidium guajava (Guava) fruit pulp, Plantago major shoots, Inga edulis tender stems.</p>
@@ -650,6 +678,7 @@
 
     <!-- 21. Manatee -->
     <div class="animal-entry" data-animal="manatee">
+      <img src="https://via.placeholder.com/900x200?text=Manatee" alt="Manatee">
       <h2>21. Manatee</h2>
       <p><span class="label">Description:</span> Gentle sea cows of warm coastal waters, grazing on aquatic bounty.</p>
       <p><span class="label">Diet:</span> Thalassia testudinum (Turtle grass) blades, Syringodium filiforme shoots, Halodule wrightii tender stems, Ruppia maritima leaves.</p>
@@ -671,6 +700,7 @@
 
     <!-- 22. Iguana -->
     <div class="animal-entry" data-animal="iguana">
+      <img src="https://via.placeholder.com/900x200?text=Iguana" alt="Iguana">
       <h2>22. Iguana</h2>
       <p><span class="label">Description:</span> Sun-basking lizards of tropical Americas, vibrant and herbivorous.</p>
       <p><span class="label">Diet:</span> Hibiscus rosa-sinensis leaves, Psidium guajava (Guava) fruit pulp, Passiflora edulis shoots, Opuntia cochenillifera tender pads.</p>
