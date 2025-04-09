@@ -51,6 +51,11 @@
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
+      display: block; /* Ensure entries are block by default */
+    }
+
+    .animal-entry.hidden {
+      display: none; /* Hide entries when filtered out */
     }
 
     .animal-entry:hover {
@@ -120,6 +125,36 @@
       font-size: 1rem;
     }
 
+    .search-bar {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .search-bar input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #1a3c34;
+      border-radius: 5px;
+      width: 200px;
+    }
+
+    .search-bar button {
+      background: #1a3c34;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background: #2e5a50;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -142,9 +177,13 @@
         font-size: 1.6rem;
       }
 
-      .animal-entry p,
+       .animal-entry p,
       .animal-entry li {
         font-size: 1rem;
+      }
+
+      .search-bar input {
+        width: 150px;
       }
     }
   </style>
@@ -160,6 +199,8 @@
     <div class="animal-entry">
       <h2>1. Elephants</h2>
       <p><span class="label">Diet:</span> Grasses, leaves, bark, fruits (up to 300 lbs daily).</p>
+      <p><span class="label">Life Span:</span> 60–70 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, skin infections, joint pain.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Neem: Antibacterial, antifungal; fights parasites, skin ailments.</li>
@@ -176,6 +217,8 @@
     <div class="animal-entry">
       <h2>2. Rhinoceroses</h2>
       <p><span class="label">Diet:</span> Grasses, leaves, shrubs, bark.</p>
+      <p><span class="label">Life Span:</span> 35–50 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Wounds, arthritis, digestive issues.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Moringa: Antioxidant, anti-inflammatory; supports joints.</li>
@@ -192,6 +235,8 @@
     <div class="animal-entry">
       <h2>3. Bison</h2>
       <p><span class="label">Diet:</span> Grasses, herbs, shrubs.</p>
+      <p><span class="label">Life Span:</span> 15–20 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Infections, wounds, liver issues.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Echinacea: Immune-boosting; prevents infections.</li>
@@ -208,6 +253,8 @@
     <div class="animal-entry">
       <h2>4. Hippopotamuses</h2>
       <p><span class="label">Diet:</span> Grasses, aquatic plants, fruits.</p>
+      <p><span class="label">Life Span:</span> 40–50 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Skin irritation, digestive issues, infections.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Water Hyacinth: Anti-inflammatory; reduces skin irritation.</li>
@@ -224,6 +271,8 @@
     <div class="animal-entry">
       <h2>5. Gorillas</h2>
       <p><span class="label">Diet:</span> Leaves, fruits, bark, stems.</p>
+      <p><span class="label">Life Span:</span> 35–40 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Digestive issues, joint pain, stress.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Mint: Relieves digestive discomfort, calms cramps.</li>
@@ -240,6 +289,8 @@
     <div class="animal-entry">
       <h2>6. Zebras</h2>
       <p><span class="label">Diet:</span> Grasses, bitter herbs, shrubs.</p>
+      <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, wounds, digestive issues.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Bitter Herbs: Expels parasites, supports digestion.</li>
@@ -256,6 +307,8 @@
     <div class="animal-entry">
       <h2>7. Giraffes</h2>
       <p><span class="label">Diet:</span> Leaves from acacia, mimosa trees.</p>
+      <p><span class="label">Life Span:</span> 25–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Joint issues, wounds, parasites.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Acacia: Tannins aid digestion, fight parasites.</li>
@@ -272,6 +325,8 @@
     <div class="animal-entry">
       <h2>8. Camels</h2>
       <p><span class="label">Diet:</span> Thorny bushes, shrubs, desert plants.</p>
+      <p><span class="label">Life Span:</span> 40–50 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Infections, digestive issues, dehydration.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Fenugreek: Immune-boosting, anti-inflammatory; aids stomach.</li>
@@ -288,6 +343,8 @@
     <div class="animal-entry">
       <h2>9. Pandas</h2>
       <p><span class="label">Diet:</span> Bamboo, fruits, flowers.</p>
+      <p><span class="label">Life Span:</span> 15–20 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Digestive issues, inflammation, low energy.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Bamboo: Fiber-rich, anti-inflammatory; promotes longevity.</li>
@@ -303,6 +360,8 @@
     <div class="animal-entry">
       <h2>10. Sloths</h2>
       <p><span class="label">Diet:</span> Leaves from cecropia, mimosa trees.</p>
+      <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Slow metabolism, infections, inflammation.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Cecropia: Antioxidants, anti-inflammatory; supports metabolism.</li>
@@ -318,6 +377,8 @@
     <div class="animal-entry">
       <h2>11. Koalas</h2>
       <p><span class="label">Diet:</span> Eucalyptus leaves.</p>
+      <p><span class="label">Life Span:</span> 10–15 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Infections, digestive issues, stress.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Eucalyptus: Antibacterial, antifungal; aids digestion, calms.</li>
@@ -332,6 +393,8 @@
     <div class="animal-entry">
       <h2>12. Kangaroos</h2>
       <p><span class="label">Diet:</span> Grasses, shrubs.</p>
+      <p><span class="label">Life Span:</span> 6–8 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Joint pain, infections, digestive issues.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Wattle: Antibacterial, aids digestion.</li>
@@ -347,6 +410,8 @@
     <div class="animal-entry">
       <h2>13. Tortoises</h2>
       <p><span class="label">Diet:</span> Grasses, leaves, fruits.</p>
+      <p><span class="label">Life Span:</span> 50–100+ years in the wild.</p>
+      <p><span class="label">Conditions:</span> Liver issues, inflammation, infections.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Dandelion: Detoxifies liver, anti-inflammatory.</li>
@@ -362,6 +427,8 @@
     <div class="animal-entry">
       <h2>14. Antelopes</h2>
       <p><span class="label">Diet:</span> Grasses, shrubs, bushes.</p>
+      <p><span class="label">Life Span:</span> 10–25 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, digestive issues, infections.</p>
       <p><span class="label">Medicinal Plants:</span></p>
       <ul>
         <li>Bitter Herbs: Cleanses digestion, fights parasites.</li>
@@ -373,60 +440,156 @@
       </div>
     </div>
 
-    <!-- 15. Cats -->
+    <!-- 15. Moose -->
     <div class="animal-entry">
-      <h2>15. Cats</h2>
-      <p><span class="label">Condition:</span> Digestive issues, parasites, anxiety.</p>
-      <p><span class="label">Behavior:</span> Chews grass, hides, rests.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Nut grass, wheatgrass, catnip.</p>
-      <p><span class="label">Effect:</span> Cleanses stomach, calms nerves.</p>
-      <button class="collapse-button" onclick="toggleDetails('catDetails')">Discover More</button>
-      <div id="catDetails" class="details">
-        <p>Cats’ instincts guide them to plants that restore balance and calm.</p>
+      <h2>15. Moose</h2>
+      <p><span class="label">Diet:</span> Leaves, bark, aquatic plants, twigs.</p>
+      <p><span class="label">Life Span:</span> 15–25 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Joint pain, infections, digestive issues.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Willow: Anti-inflammatory; eases joint pain.</li>
+        <li>Yarrow: Antibacterial; heals wounds.</li>
+        <li>Watercress: Nutrient-rich; supports digestion.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('mooseDetails')">Discover More</button>
+      <div id="mooseDetails" class="details">
+        <p>Moose wade through wetlands, sustained by plants that soothe their massive frames.</p>
       </div>
     </div>
 
-    <!-- 16. Snakes -->
+    <!-- 16. Okapi -->
     <div class="animal-entry">
-      <h2>16. Snakes</h2>
-      <p><span class="label">Condition:</span> Cold, weak, or injured.</p>
-      <p><span class="label">Behavior:</span> Basks in sun, seeks cool damp areas.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Aloe vera, clay-rich soil.</p>
-      <p><span class="label">Effect:</span> Sun restores energy; clay/aloe reduce swelling, infection.</p>
-      <button class="collapse-button" onclick="toggleDetails('snakeDetails')">Discover More</button>
-      <div id="snakeDetails" class="details">
-        <p>Snakes slither to health with nature’s sun and soil remedies.</p>
+      <h2>16. Okapi</h2>
+      <p><span class="label">Diet:</span> Leaves, buds, fruits, ferns.</p>
+      <p><span class="label">Life Span:</span> 20–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, skin infections, stress.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Vernonia: Antiparasitic; fights worms.</li>
+        <li>Marula: Anti-inflammatory; aids skin health.</li>
+        <li>Lemon Balm: Calms stress, aids digestion.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('okapiDetails')">Discover More</button>
+      <div id="okapiDetails" class="details">
+        <p>Okapis thrive in rainforests, nourished by plants that protect their elusive nature.</p>
       </div>
     </div>
 
-    <!-- 17. Chimpanzees -->
+    <!-- 17. Capybara -->
     <div class="animal-entry">
-      <h2>17. Chimpanzees</h2>
-      <p><span class="label">Condition:</span> Parasites, stomach pain, infections.</p>
-      <p><span class="label">Behavior:</span> Eats bitter leaves, chews roots.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Bitter leaf, Aspilia, piper leaves.</p>
-      <p><span class="label">Effect:</span> Kills worms, fights infections, repels insects.</p>
-      <button class="collapse-button" onclick="toggleDetails('chimpanzeeDetails')">Discover More</button>
-      <div id="chimpanzeeDetails" class="details">
-        <p>Chimpanzees’ wisdom shines in their use of nature’s healing plants.</p>
+      <h2>17. Capybara</h2>
+      <p><span class="label">Diet:</span> Grasses, aquatic plants, bark, fruits.</p>
+      <p><span class="label">Life Span:</span> 8–10 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Skin irritation, digestive issues, infections.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Water Hyacinth: Anti-inflammatory; soothes skin.</li>
+        <li>Guava Leaves: Antibacterial; aids digestion.</li>
+        <li>Purslane: Antioxidant; boosts immunity.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('capybaraDetails')">Discover More</button>
+      <div id="capybaraDetails" class="details">
+        <p>Capybaras lounge by water, healed by plants that keep them calm and healthy.</p>
       </div>
     </div>
 
-    <!-- 18. Bears -->
+    <!-- 18. Deer -->
     <div class="animal-entry">
-      <h2>18. Bears</h2>
-      <p><span class="label">Condition:</span> Wounds, infections, digestive issues.</p>
-      <p><span class="label">Behavior:</span> Rests, forages, licks wounds.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Osha root, devil’s club, Angelica.</p>
-      <p><span class="label">Effect:</span> Antimicrobial, anti-inflammatory; fights infection.</p>
-      <button class="collapse-button" onclick="toggleDetails('bearDetails')">Discover More</button>
-      <div id="bearDetails" class="details">
-        <p>Bears heal their wild spirits with roots that soothe and protect.</p>
+      <h2>18. Deer</h2>
+      <p><span class="label">Diet:</span> Grasses, leaves, twigs, fruits.</p>
+      <p><span class="label">Life Span:</span> 6–14 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, wounds, digestive issues.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Plantain: Wound-healing; reduces inflammation.</li>
+        <li>Bitter Herbs: Expels parasites, aids digestion.</li>
+        <li>Elderberry: Immune-boosting; fights infections.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('deerDetails')">Discover More</button>
+      <div id="deerDetails" class="details">
+        <p>Deer graze delicately, sustained by plants that heal and protect.</p>
+      </div>
+    </div>
+
+    <!-- 19. Wildebeest -->
+    <div class="animal-entry">
+      <h2>19. Wildebeest</h2>
+      <p><span class="label">Diet:</span> Grasses, leaves, shrubs.</p>
+      <p><span class="label">Life Span:</span> 10–15 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Parasites, infections, joint pain.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Aloe Vera: Antibacterial; heals wounds.</li>
+        <li>Devil’s Claw: Anti-inflammatory; eases joints.</li>
+        <li>Bitter Herbs: Cleanses digestion, fights parasites.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('wildebeestDetails')">Discover More</button>
+      <div id="wildebeestDetails" class="details">
+        <p>Wildebeest migrate with vigor, fueled by plants that purge and heal.</p>
+      </div>
+    </div>
+
+    <!-- 20. Tapir -->
+    <div class="animal-entry">
+      <h2>20. Tapir</h2>
+      <p><span class="label">Diet:</span> Leaves, fruits, twigs, aquatic plants.</p>
+      <p><span class="label">Life Span:</span> 25–30 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Skin infections, digestive issues, wounds.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Guava Leaves: Antibacterial; aids digestion.</li>
+        <li>Cecropia: Anti-inflammatory; supports healing.</li>
+        <li>Plantain: Wound-healing; reduces inflammation.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('tapirDetails')">Discover More</button>
+      <div id="tapirDetails" class="details">
+        <p>Tapirs forage in forests, sustained by plants that soothe their sturdy bodies.</p>
+      </div>
+    </div>
+
+    <!-- 21. Manatee -->
+    <div class="animal-entry">
+      <h2>21. Manatee</h2>
+      <p><span class="label">Diet:</span> Seagrasses, aquatic plants, algae.</p>
+      <p><span class="label">Life Span:</span> 40–60 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Skin infections, digestive issues, wounds.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Seagrass: Nutrient-rich; supports digestion.</li>
+        <li>Water Hyacinth: Anti-inflammatory; soothes skin.</li>
+        <li>Mangrove Leaves: Antibacterial; aids healing.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('manateeDetails')">Discover More</button>
+      <div id="manateeDetails" class="details">
+        <p>Manatees glide through waters, healed by plants that nourish their gentle souls.</p>
+      </div>
+    </div>
+
+    <!-- 22. Iguana -->
+    <div class="animal-entry">
+      <h2>22. Iguana</h2>
+      <p><span class="label">Diet:</span> Leaves, flowers, fruits.</p>
+      <p><span class="label">Life Span:</span> 10–20 years in the wild.</p>
+      <p><span class="label">Conditions:</span> Infections, digestive issues, stress.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li>Hibiscus: Antioxidant; supports digestion.</li>
+        <li>Plantain: Antibacterial; heals wounds.</li>
+        <li>Moringa: Nutrient-rich; boosts immunity.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('iguanaDetails')">Discover More</button>
+      <div id="iguanaDetails" class="details">
+        <p>Iguanas bask in the sun, sustained by plants that keep them vibrant.</p>
       </div>
     </div>
   </div>
 
   <footer>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search for an animal..." />
+      <button onclick="searchAnimals()">Search</button>
+    </div>
     <p>Curated by Kofi Fosu — Cosmos Coderr</p>
   </footer>
 
@@ -435,6 +598,27 @@
       const element = document.getElementById(id);
       element.style.display = element.style.display === 'block' ? 'none' : 'block';
     }
+
+    function searchAnimals() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const entries = document.querySelectorAll('.animal-entry');
+
+      entries.forEach(entry => {
+        const animalName = entry.querySelector('h2').textContent.toLowerCase();
+        if (animalName.includes(searchTerm)) {
+          entry.classList.remove('hidden');
+        } else {
+          entry.classList.add('hidden');
+        }
+      });
+    }
+
+    // Trigger search on Enter key
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchAnimals();
+      }
+    });
   </script>
 </body>
 </html>
