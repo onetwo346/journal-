@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kofi’s Animal Healing Journal</title>
+  <style>
+    /* Global Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+      box-sizing: border-box;
+    }
+
+    header {
+      background-color: #2a3d34;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    .animal-entry {
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .animal-entry:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .animal-entry h2 {
+      font-size: 2rem;
+      color: #2a3d34;
+      margin-bottom: 1rem;
+    }
+
+    .animal-entry p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #2a3d34;
+    }
+
+    .collapse-button {
+      background-color: #2a3d34;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 1rem;
+      display: block;
+      width: 100%;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .collapse-button:hover {
+      background-color: #3a5346;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .animal-entry h2 {
+        font-size: 1.5rem;
+      }
+
+      .animal-entry p {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Kofi’s Animal Healing Journal</h1>
+    <p>Documenting how animals heal themselves with natural methods</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Animal Entry 1 -->
+    <div class="animal-entry fade-in">
+      <h2>1. Snake</h2>
+      <p><span class="label">Condition:</span> Cold, weak, or injured.</p>
+      <p><span class="label">Behavior:</span> Basks in the sun to raise body heat. Seeks cool, damp areas to reduce inflammation.</p>
+      <p><span class="label">Medicinal Plants/Substances:</span> Aloe vera and clay-rich soil.</p>
+      <p><span class="label">Effect:</span> Sunlight helps restore energy and mobility. Clay and aloe reduce swelling and infection risk.</p>
+      <button class="collapse-button" onclick="toggleDetails('snakeDetails')">Read More</button>
+      <div id="snakeDetails" style="display:none;">
+        <p><strong>Further Insight:</strong> Snakes rely on heat to regulate their body temperature and fight off infections. The use of clay in their environment plays a crucial role in detoxifying and healing their wounds.</p>
+      </div>
+    </div>
+
+    <!-- Animal Entry 2 -->
+    <div class="animal-entry fade-in">
+      <h2>2. Cat</h2>
+      <p><span class="label">Condition:</span> Digestive issues, parasites, or anxiety.</p>
+      <p><span class="label">Behavior:</span> Chews grass, hides, or rests.</p>
+      <p><span class="label">Medicinal Plants/Substances:</span> Nut grass (Cyperus rotundus), wheatgrass, and catnip.</p>
+      <p><span class="label">Effect:</span> Helps induce vomiting or cleanse the stomach. Catnip calms nerves and eases irritation.</p>
+      <button class="collapse-button" onclick="toggleDetails('catDetails')">Read More</button>
+      <div id="catDetails" style="display:none;">
+        <p><strong>Further Insight:</strong> Wild cats, in particular, are known to consume certain plants that help detoxify their digestive system, aiding in the removal of parasites and alleviating discomfort.</p>
+      </div>
+    </div>
+
+    <!-- More Entries Go Here -->
+
+  </div>
+
+  <footer>
+    <p>Created by Kofi Fosu — Cosmos Coderr</p>
+  </footer>
+
+  <script>
+    function toggleDetails(id) {
+      var element = document.getElementById(id);
+      if (element.style.display === "none") {
+        element.style.display = "block";
+      } else {
+        element.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
