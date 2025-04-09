@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kofi’s Cosmic Animal Codex</title>
+  <title>Kofi’s Animal Healing Journal</title>
   <style>
     * {
       margin: 0;
@@ -12,54 +12,41 @@
     }
 
     body {
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
-      color: #e0e1dd;
-      line-height: 1.8;
+      font-family: 'Lora', serif;
+      background: linear-gradient(135deg, #f5f7fa, #e2e8f0);
+      color: #2d3748;
+      line-height: 1.6;
       padding: 2rem;
       overflow-x: hidden;
     }
 
     header {
-      background: rgba(26, 60, 52, 0.9);
-      color: #e63946;
+      background: #2f855a;
+      color: #fff;
       text-align: center;
       padding: 3rem 1rem;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       margin-bottom: 3rem;
       position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(230, 57, 70, 0.2), transparent);
-      animation: pulse 10s infinite;
     }
 
     header h1 {
-      font-size: 3rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px #e63946;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     header p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-style: italic;
-      opacity: 0.85;
+      opacity: 0.9;
+      margin-top: 0.5rem;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 900px;
       margin: auto;
-      position: relative;
     }
 
     .search-bar {
@@ -73,66 +60,51 @@
     }
 
     .search-bar input {
-      padding: 0.8rem;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 50px;
-      width: 250px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #e0e1dd;
-      box-shadow: inset 0 0 5px rgba(230, 57, 70, 0.3);
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 25px;
+      width: 300px;
+      background: #fff;
+      color: #2d3748;
       transition: all 0.3s ease;
     }
 
     .search-bar input:focus {
       outline: none;
-      box-shadow: 0 0 15px rgba(230, 57, 70, 0.7);
+      border-color: #2f855a;
+      box-shadow: 0 0 8px rgba(47, 133, 90, 0.3);
     }
 
     .search-bar button {
-      background: #e63946;
+      background: #2f855a;
       color: #fff;
-      padding: 0.8rem 1.5rem;
+      padding: 0.9rem 1.8rem;
       border: none;
-      border-radius: 50px;
+      border-radius: 25px;
       cursor: pointer;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+      font-size: 1rem;
+      font-weight: 600;
       transition: all 0.3s ease;
     }
 
     .search-bar button:hover {
-      background: #f4a261;
-      box-shadow: 0 0 20px rgba(244, 162, 97, 0.8);
+      background: #276749;
+      transform: translateY(-2px);
     }
 
     .animal-entry {
-      background: rgba(27, 38, 59, 0.85);
+      background: #fff;
       border-radius: 15px;
       padding: 2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.5s ease;
-      animation: float 6s infinite ease-in-out;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
     }
 
-    .animal-entry::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, rgba(230, 57, 70, 0.1), rgba(244, 162, 97, 0.1));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .animal-entry:hover::before {
-      opacity: 1;
+    .animal-entry:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     }
 
     .animal-entry.hidden {
@@ -140,116 +112,124 @@
     }
 
     .animal-entry h2 {
-      font-size: 2.2rem;
-      color: #e63946;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 5px rgba(230, 57, 70, 0.5);
+      font-size: 1.8rem;
+      color: #2f855a;
+      margin-bottom: 1rem;
+      font-weight: 700;
     }
 
     .animal-entry p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin: 0.8rem 0;
+      color: #4a5568;
     }
 
     .label {
-      font-weight: bold;
+      font-weight: 600;
+      color: #7b341e;
       text-transform: uppercase;
-      color: #f4a261;
-      letter-spacing: 1px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
     }
 
     .animal-entry ul {
-      list-style-type: none;
-      margin: 1rem 0 1rem 1rem;
+      list-style: none;
+      margin: 1rem 0;
+      padding-left: 1.5rem;
     }
 
     .animal-entry li {
       font-size: 1.1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       position: relative;
-      padding-left: 1.5rem;
+      color: #4a5568;
     }
 
     .animal-entry li::before {
-      content: '🌿';
+      content: '🍃';
       position: absolute;
-      left: 0;
-      color: #95e8d3;
+      left: -1.5rem;
+      top: 0.2rem;
     }
 
     .collapse-button {
-      background: #e63946;
+      background: #2f855a;
       color: #fff;
       padding: 0.8rem 2rem;
       border: none;
-      border-radius: 30px;
+      border-radius: 25px;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1rem;
+      font-weight: 600;
       display: block;
       margin: 1.5rem auto 0;
-      box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
       transition: all 0.3s ease;
     }
 
     .collapse-button:hover {
-      background: #f4a261;
-      transform: scale(1.05);
+      background: #276749;
+      transform: translateY(-2px);
     }
 
     .details {
       display: none;
-      background: rgba(149, 232, 211, 0.2);
+      background: #edf7f3;
       padding: 1.5rem;
       border-radius: 10px;
       margin-top: 1.5rem;
-      font-style: italic;
-      color: #e0e1dd;
-      box-shadow: inset 0 0 10px rgba(149, 232, 211, 0.3);
+      font-size: 1.1rem;
+      color: #2d3748;
+      border-left: 4px solid #2f855a;
+    }
+
+    .details.show {
+      display: block;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      color: #95e8d3;
-      font-size: 1.1rem;
-      text-shadow: 0 0 5px rgba(149, 232, 211, 0.5);
+      color: #4a5568;
+      font-size: 1rem;
+      margin-top: 3rem;
+      border-top: 1px solid #e2e8f0;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
-      .animal-entry h2 { font-size: 1.8rem; }
+      .animal-entry h2 { font-size: 1.6rem; }
       .animal-entry p, .animal-entry li { font-size: 1rem; }
-      .search-bar input { width: 180px; }
+      .search-bar input { width: 200px; }
+      .search-bar { flex-direction: column; align-items: center; }
+      .search-bar button { width: 200px; }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>Kofi’s Cosmic Animal Codex</h1>
-    <p>Unveiling the Galactic Secrets of Nature’s Healers</p>
+    <h1>Kofi’s Animal Healing Journal</h1>
+    <p>Exploring the Natural Wisdom of Earth’s Creatures</p>
   </header>
 
   <div class="container">
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Seek an animal’s wisdom..." />
+      <input type="text" id="searchInput" placeholder="Search for an animal..." />
       <button onclick="searchAnimals()">Explore</button>
     </div>
 
     <!-- 1. Elephants -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="elephants">
       <h2>1. Elephants</h2>
       <p><span class="label">Description:</span> Majestic giants of Africa and Asia, revered for their intelligence, memory, and intricate social structures.</p>
       <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia tortilis leaves and young shoots, Adansonia digitata (Baobab) fruit pulp and bark, Sclerocarya birrea (Marula) ripe fruit.</p>
@@ -263,14 +243,14 @@
         <li>Ficus sycomorus (Sycamore Fig): Hydrating latex prevents dehydration; leaves and fruit ingested.</li>
         <li>Aloe vera: Antibacterial gel soothes dental abscesses; sap consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('elephantDetails')">Unlock Secrets</button>
-      <div id="elephantDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="elephantDetails">
         <p>Elephants traverse continents, their trunks unearthing botanical pharmacies beneath the savanna’s canopy.</p>
       </div>
     </div>
 
     <!-- 2. Rhinoceroses -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="rhinoceroses">
       <h2>2. Rhinoceroses</h2>
       <p><span class="label">Description:</span> Armored titans of Africa and Asia, wielding horns as symbols of resilience.</p>
       <p><span class="label">Diet:</span> Digitaria eriantha (Smuts finger grass) blades, Euphorbia ingens succulent leaves, Commiphora africana bark, Themeda triandra (Red grass) shoots.</p>
@@ -284,14 +264,14 @@
         <li>Aloe ferox: Antifungal saponins treat Trichophyton infections; leaves grazed.</li>
         <li>Sansevieria hyacinthoides: De anxiolytic compounds relieve respiratory distress; leaves ingested.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('rhinoDetails')">Unlock Secrets</button>
-      <div id="rhinoDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="rhinoDetails">
         <p>Rhinos forge paths through thorns, their diets a fortress against nature’s assaults.</p>
       </div>
     </div>
 
     <!-- 3. Bison -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="bison">
       <h2>3. Bison</h2>
       <p><span class="label">Description:</span> Rugged monarchs of North American plains, embodying raw endurance.</p>
       <p><span class="label">Diet:</span> Bouteloua gracilis (Blue grama) blades, Artemisia ludoviciana (Prairie sage) leaves, Achillea millefolium (Yarrow) shoots, Asclepias syriaca (Milkweed) tender leaves.</p>
@@ -305,14 +285,14 @@
         <li>Echinacea angustifolia: Antiparasitic alkamides reduce Strongyloides; roots grazed.</li>
         <li>Solidago virgaurea (Goldenrod): Warming diuretics combat hypothermia; leaves consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('bisonDetails')">Unlock Secrets</button>
-      <div id="bisonDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="bisonDetails">
         <p>Bison thunder across prairies, their herbal arsenal fortifying their shaggy might.</p>
       </div>
     </div>
 
     <!-- 4. Hippopotamuses -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="hippopotamuses">
       <h2>4. Hippopotamuses</h2>
       <p><span class="label">Description:</span> Semi-aquatic behemoths of Africa, masters of rivers and lakes.</p>
       <p><span class="label">Diet:</span> Vossia cuspidata (Hippo grass) blades, Cyperus papyrus shoots, Nymphaea caerulea (Water lily) leaves, Paspalum scrobiculatum tender stems.</p>
@@ -326,14 +306,14 @@
         <li>Aloe barbadensis: Cooling gel reduces heat stress; sap consumed.</li>
         <li>Azadirachta indica (Neem): Antiparasitic limonoids deter ticks; leaves eaten.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('hippoDetails')">Unlock Secrets</button>
-      <div id="hippoDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="hippoDetails">
         <p>Hippos reign over waterways, their plant feasts a balm for their aquatic lives.</p>
       </div>
     </div>
 
     <!-- 5. Gorillas -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="gorillas">
       <h2>5. Gorillas</h2>
       <p><span class="label">Description:</span> Forest-dwelling primates of Africa, bound by deep social ties.</p>
       <p><span class="label">Diet:</span> Vernonia amygdalina leaves, Aframomum melegueta fruits, Cecropia peltata shoots, Musanga cecropioides bark.</p>
@@ -347,14 +327,14 @@
         <li>Alstonia boonei: Antiparasitic alkaloids reduce tapeworms; bark consumed.</li>
         <li>Morinda lucida: Antiviral anthraquinones fight simian viruses; leaves eaten.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('gorillaDetails')">Unlock Secrets</button>
-      <div id="gorillaDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="gorillaDetails">
         <p>Gorillas weave through jungles, their diets a tapestry of healing and strength.</p>
       </div>
     </div>
 
     <!-- 6. Zebras -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="zebras">
       <h2>6. Zebras</h2>
       <p><span class="label">Description:</span> Striped wanderers of African savannas, thriving in migratory herds.</p>
       <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Digitaria eriantha shoots, Acacia senegal leaves, Themeda triandra tender stems.</p>
@@ -368,14 +348,14 @@
         <li>Ficus thonningii: Hydrating latex combats dehydration; leaves ingested.</li>
         <li>Sorghum bicolor: Iron-rich shoots boost hemoglobin; tender stems grazed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('zebraDetails')">Unlock Secrets</button>
-      <div id="zebraDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="zebraDetails">
         <p>Zebras gallop with stripes aglow, their plant diet a shield of vitality.</p>
       </div>
     </div>
 
     <!-- 7. Giraffes -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="giraffes">
       <h2>7. Giraffes</h2>
       <p><span class="label">Description:</span> Towering sentinels of African savannas, browsing treetops with elegance.</p>
       <p><span class="label">Diet:</span> Acacia tortilis leaves, Mimosa pudica shoots, Commiphora africana bark, Balanites aegyptiaca fruit pulp.</p>
@@ -389,14 +369,14 @@
         <li>Salvadora persica: Antibacterial quinones soothe gums; twigs chewed.</li>
         <li>Aloe secundiflora: Cooling gel mitigates heat stress; sap consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('giraffeDetails')">Unlock Secrets</button>
-      <div id="giraffeDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="giraffeDetails">
         <p>Giraffes stretch toward the heavens, their leafy feasts a lifeline of resilience.</p>
       </div>
     </div>
 
     <!-- 8. Camels -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="camels">
       <h2>8. Camels</h2>
       <p><span class="label">Description:</span> Desert nomads with humps of endurance, thriving in arid wastelands.</p>
       <p><span class="label">Diet:</span> Acacia nilotica thorny leaves, Tamarix aphylla shoots, Salsola imbricata succulent stems, Prosopis cineraria bark.</p>
@@ -410,14 +390,14 @@
         <li>Calotropis procera: Anti-inflammatory latex soothes sand irritation; leaves grazed.</li>
         <li>Citrullus colocynthis: Energy-boosting cucurbitacins reduce fatigue; fruit pulp consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('camelDetails')">Unlock Secrets</button>
-      <div id="camelDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="camelDetails">
         <p>Camels conquer deserts, their plant diet a shield against relentless sands.</p>
       </div>
     </div>
 
     <!-- 9. Pandas -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="pandas">
       <h2>9. Pandas</h2>
       <p><span class="label">Description:</span> Monochrome bears of Chinese highlands, bamboo connoisseurs.</p>
       <p><span class="label">Diet:</span> Phyllostachys aurea (Golden bamboo) shoots, Bashania fargesii leaves, Dioscorea opposita (Wild yam) tubers, Prunus salicina fruit pulp.</p>
@@ -431,14 +411,14 @@
         <li>Ligustrum lucidum: Antibacterial flavonoids treat caries; fruit consumed.</li>
         <li>Artemisia annua: Antiparasitic artemisinin deters roundworms; leaves grazed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('pandaDetails')">Unlock Secrets</button>
-      <div id="pandaDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="pandaDetails">
         <p>Pandas lounge in bamboo groves, their diet a gentle balm for their serene lives.</p>
       </div>
     </div>
 
     <!-- 10. Sloths -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="sloths">
       <h2>10. Sloths</h2>
       <p><span class="label">Description:</span> Leisurely arboreal dwellers of Central and South American rainforests.</p>
       <p><span class="label">Diet:</span> Cecropia peltata leaves, Mimosa pudica shoots, Inga vera bark, Clusia rosea tender leaves.</p>
@@ -452,14 +432,14 @@
         <li>Piper aduncum: Antifungal piperine treats Candida; leaves grazed.</li>
         <li>Passiflora edulis: Calming flavonoids ease stress; leaves consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('slothDetails')">Unlock Secrets</button>
-      <div id="slothDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="slothDetails">
         <p>Sloths drift through canopies, their leafy diets a slow dance of healing.</p>
       </div>
     </div>
 
     <!-- 11. Koalas -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="koalas">
       <h2>11. Koalas</h2>
       <p><span class="label">Description:</span> Eucalyptus-bound marsupials of Australian woodlands.</p>
       <p><span class="label">Diet:</span> Eucalyptus globulus leaves, Eucalyptus camaldulensis shoots, Eucalyptus viminalis tender leaves.</p>
@@ -473,14 +453,14 @@
         <li>Melaleuca alternifolia: Hydrating oils prevent dehydration; leaves grazed.</li>
         <li>Leptospermum scoparium: Decongestant flavonoids ease breathing; leaves consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('koalaDetails')">Unlock Secrets</button>
-      <div id="koalaDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="koalaDetails">
         <p>Koalas cling to treetops, their eucalyptus diet a soothing elixir.</p>
       </div>
     </div>
 
     <!-- 12. Kangaroos -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="kangaroos">
       <h2>12. Kangaroos</h2>
       <p><span class="label">Description:</span> Bounding marsupials of Australian outback, pouch-bearing dynamos.</p>
       <p><span class="label">Diet:</span> Themeda triandra (Kangaroo grass) blades, Acacia aneura leaves, Atriplex nummularia (Saltbush) shoots, Chloris gayana tender stems.</p>
@@ -494,14 +474,14 @@
         <li>Santalum spicatum: Cooling oils mitigate heat exhaustion; bark ingested.</li>
         <li>Eremophila longifolia: Antiparasitic alkaloids deter ticks; leaves grazed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('kangarooDetails')">Unlock Secrets</button>
-      <div id="kangarooDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="kangarooDetails">
         <p>Kangaroos leap across plains, their plant diet fueling boundless energy.</p>
       </div>
     </div>
 
     <!-- 13. Tortoises -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="tortoises">
       <h2>13. Tortoises</h2>
       <p><span class="label">Description:</span> Shelled wanderers of warm terrains, ancient survivors.</p>
       <p><span class="label">Diet:</span> Opuntia ficus-indica (Prickly pear) fruit pulp, Plantago ovata leaves, Morus alba (Mulberry) tender shoots, Cynodon dactylon blades.</p>
@@ -515,14 +495,14 @@
         <li>Aloe vera: Antifungal gel treats shell rot; sap consumed.</li>
         <li>Salsola kali: Hydrating succulence prevents dehydration; stems grazed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('tortoiseDetails')">Unlock Secrets</button>
-      <div id="tortoiseDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="tortoiseDetails">
         <p>Tortoises plod through time, their plant diet an elixir of longevity.</p>
       </div>
     </div>
 
     <!-- 14. Antelopes -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="antelopes">
       <h2>14. Antelopes</h2>
       <p><span class="label">Description:</span> Swift grazers of African and Asian grasslands, agile and horned.</p>
       <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia seyal leaves, Combretum collinum shoots, Themeda triandra tender stems.</p>
@@ -536,14 +516,14 @@
         <li>Terminalia catappa: Energy-boosting tannins reduce fatigue; leaves ingested.</li>
         <li>Ziziphus mauritiana: Hemostatic compounds heal wounds; fruit pulp consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('antelopeDetails')">Unlock Secrets</button>
-      <div id="antelopeDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="antelopeDetails">
         <p>Antelopes sprint with grace, their plant diet a fountain of vigor.</p>
       </div>
     </div>
 
     <!-- 15. Moose -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="moose">
       <h2>15. Moose</h2>
       <p><span class="label">Description:</span> Towering deer of North American and Eurasian wetlands, antlered giants.</p>
       <p><span class="label">Diet:</span> Salix alba (Willow) leaves, Betula pendula (Birch) bark, Menyanthes trifoliata shoots, Nymphaea alba (Water lily) tender leaves.</p>
@@ -557,14 +537,14 @@
         <li>Hypericum perforatum: Warming flavonoids combat hypothermia; leaves grazed.</li>
         <li>Artemisia vulgaris: Antiparasitic sesquiterpenes deter ticks; leaves consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('mooseDetails')">Unlock Secrets</button>
-      <div id="mooseDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="mooseDetails">
         <p>Moose wade through marshes, their plant diet a bulwark against the cold.</p>
       </div>
     </div>
 
     <!-- 16. Okapi -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="okapi">
       <h2>16. Okapi</h2>
       <p><span class="label">Description:</span> Elusive, zebra-striped kin of giraffes, hidden in African rainforests.</p>
       <p><span class="label">Diet:</span> Vernonia amygdalina leaves, Sclerocarya birrea (Marula) fruit pulp, Aframomum melegueta shoots, Polypodium vulgare ferns.</p>
@@ -578,14 +558,14 @@
         <li>Piper nigrum: Antifungal piperine treats Aspergillus; leaves grazed.</li>
         <li>Milicia excelsa: Carminative tannins aid digestion; bark consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('okapiDetails')">Unlock Secrets</button>
-      <div id="okapiDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="okapiDetails">
         <p>Okapis glide through shadows, their plant diet a cloak of resilience.</p>
       </div>
     </div>
 
     <!-- 17. Capybara -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="capybara">
       <h2>17. Capybara</h2>
       <p><span class="label">Description:</span> Sociable giants of South American waterways, the world’s largest rodents.</p>
       <p><span class="label">Diet:</span> Paspalum notatum (Bahia grass) blades, Eichhornia crassipes (Water hyacinth) leaves, Cecropia pachystachya shoots, Hymenachne amplexicaulis tender stems.</p>
@@ -599,14 +579,14 @@
         <li>Aloe arborescens: Cooling gel mitigates heat stress; sap ingested.</li>
         <li>Azadirachta indica: Antiparasitic limonoids deter fleas; leaves consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('capybaraDetails')">Unlock Secrets</button>
-      <div id="capybaraDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="capybaraDetails">
         <p>Capybaras bask by rivers, their plant diet a serene shield of health.</p>
       </div>
     </div>
 
     <!-- 18. Deer -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="deer">
       <h2>18. Deer</h2>
       <p><span class="label">Description:</span> Graceful forest dwellers with antlers, roaming woodlands globally.</p>
       <p><span class="label">Diet:</span> Poa pratensis (Kentucky bluegrass) blades, Quercus robur (Oak) leaves, Salix caprea (Willow) shoots, Rubus idaeus (Raspberry) tender stems.</p>
@@ -620,14 +600,14 @@
         <li>Urtica dioica (Nettle): Warming histamines combat hypothermia; leaves grazed.</li>
         <li>Valeriana officinalis: Calming valerenic acid eases stress; roots consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('deerDetails')">Unlock Secrets</button>
-      <div id="deerDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="deerDetails">
         <p>Deer dance through forests, their plant diet a symphony of survival.</p>
       </div>
     </div>
 
     <!-- 19. Wildebeest -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="wildebeest">
       <h2>19. Wildebeest</h2>
       <p><span class="label">Description:</span> Migratory antelopes of African savannas, thundering in vast herds.</p>
       <p><span class="label">Diet:</span> Cynodon dactylon (Bermuda grass) blades, Acacia tortilis leaves, Combretum imberbe shoots, Themeda triandra tender stems.</p>
@@ -641,14 +621,14 @@
         <li>Ficus sur: Hydrating latex prevents dehydration; fruit pulp ingested.</li>
         <li>Terminalia sericea: Energy-boosting tannins reduce fatigue; leaves consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('wildebeestDetails')">Unlock Secrets</button>
-      <div id="wildebeestDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="wildebeestDetails">
         <p>Wildebeest surge across plains, their plant diet a pulse of endurance.</p>
       </div>
     </div>
 
     <!-- 20. Tapir -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="tapir">
       <h2>20. Tapir</h2>
       <p><span class="label">Description:</span> Trunked herbivores of Central and South American forests, nocturnal foragers.</p>
       <p><span class="label">Diet:</span> Cecropia peltata leaves, Psidium guajava (Guava) fruit pulp, Plantago major shoots, Inga edulis tender stems.</p>
@@ -662,14 +642,14 @@
         <li>Piper aduncum: Antiparasitic piperine deters roundworms; leaves grazed.</li>
         <li>Passiflora quadrangularis: Calming flavonoids ease stress; leaves consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('tapirDetails')">Unlock Secrets</button>
-      <div id="tapirDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="tapirDetails">
         <p>Tapirs roam twilight forests, their plant diet a balm for their quiet lives.</p>
       </div>
     </div>
 
     <!-- 21. Manatee -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="manatee">
       <h2>21. Manatee</h2>
       <p><span class="label">Description:</span> Gentle sea cows of warm coastal waters, grazing on aquatic bounty.</p>
       <p><span class="label">Diet:</span> Thalassia testudinum (Turtle grass) blades, Syringodium filiforme shoots, Halodule wrightii tender stems, Ruppia maritima leaves.</p>
@@ -683,14 +663,14 @@
         <li>Zostera marina: Anti-inflammatory lignans soothe boat injuries; leaves grazed.</li>
         <li>Cymodocea nodosa: Hydrating polysaccharides prevent dehydration; leaves consumed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('manateeDetails')">Unlock Secrets</button>
-      <div id="manateeDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="manateeDetails">
         <p>Manatees drift through seas, their plant diet a buoyant shield of peace.</p>
       </div>
     </div>
 
     <!-- 22. Iguana -->
-    <div class="animal-entry">
+    <div class="animal-entry" data-animal="iguana">
       <h2>22. Iguana</h2>
       <p><span class="label">Description:</span> Sun-basking lizards of tropical Americas, vibrant and herbivorous.</p>
       <p><span class="label">Diet:</span> Hibiscus rosa-sinensis leaves, Psidium guajava (Guava) fruit pulp, Passiflora edulis shoots, Opuntia cochenillifera tender pads.</p>
@@ -704,8 +684,8 @@
         <li>Opuntia cochenillifera: Hydrating mucilage prevents dehydration; pads consumed.</li>
         <li>Azadirachta indica: Antiparasitic limonoids deter mites; leaves grazed.</li>
       </ul>
-      <button class="collapse-button" onclick="toggleDetails('iguanaDetails')">Unlock Secrets</button>
-      <div id="iguanaDetails" class="details">
+      <button class="collapse-button" onclick="toggleDetails(this)">Reveal Insights</button>
+      <div class="details" id="iguanaDetails">
         <p>Iguanas bask in sunlight, their plant diet a vibrant cloak of health.</p>
       </div>
     </div>
@@ -713,27 +693,28 @@
   </div>
 
   <footer>
-    <p>Curated by Kofi Fosu — Cosmos Coderr | Powered by xAI</p>
+    <p>Curated by Kofi Fosu | Powered by xAI</p>
   </footer>
 
   <script>
-    function toggleDetails(id) {
-      const element = document.getElementById(id);
-      const isVisible = element.style.display === 'block';
-      element.style.display = isVisible ? 'none' : 'block';
-      element.classList.toggle('fade-in', !isVisible);
+    function toggleDetails(button) {
+      const details = button.nextElementSibling;
+      const isVisible = details.classList.contains('show');
+      details.classList.toggle('show', !isVisible);
+      details.classList.toggle('fade-in', !isVisible);
+      button.textContent = isVisible ? 'Reveal Insights' : 'Hide Insights';
     }
 
     function searchAnimals() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
       const entries = document.querySelectorAll('.animal-entry');
 
       entries.forEach(entry => {
-        const animalName = entry.querySelector('h2').textContent.toLowerCase();
+        const animalName = entry.dataset.animal.toLowerCase();
         const isMatch = animalName.includes(searchTerm);
         entry.classList.toggle('hidden', !isMatch);
-        if (isMatch) {
-          entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (isMatch && searchTerm !== '') {
+          entry.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     }
@@ -741,18 +722,6 @@
     document.getElementById('searchInput').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') searchAnimals();
     });
-
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = `
-      .fade-in {
-        animation: fadeIn 0.5s ease-in;
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-    `;
-    document.head.appendChild(styleSheet);
   </script>
 </body>
 </html>
