@@ -6,206 +6,449 @@
   <title>Kofi’s Animal Healing Journal</title>
   <style>
     /* Global Styling */
-    body {
-      font-family: 'Arial', sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-      line-height: 1.6;
       box-sizing: border-box;
     }
 
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #f0f4f0, #e0e8e0);
+      color: #2a2a2a;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
     header {
-      background-color: #2a3d34;
-      color: white;
+      background: #1a3c34;
+      color: #fff;
       text-align: center;
-      padding: 2rem 0;
+      padding: 3rem 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     header h1 {
-      font-size: 3rem;
-      margin: 0;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     header p {
-      font-size: 1.2rem;
-      font-weight: 300;
+      font-size: 1.3rem;
+      font-style: italic;
+      opacity: 0.9;
     }
 
     .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem 1rem;
+      max-width: 1300px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
 
     .animal-entry {
-      background-color: white;
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      background: #fff;
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
     .animal-entry:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     }
 
     .animal-entry h2 {
-      font-size: 2rem;
-      color: #2a3d34;
+      font-size: 2.2rem;
+      color: #1a3c34;
       margin-bottom: 1rem;
+      border-bottom: 2px solid #1a3c34;
+      padding-bottom: 0.5rem;
     }
 
     .animal-entry p {
-      font-size: 1rem;
-      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
     }
 
     .label {
       font-weight: bold;
-      color: #2a3d34;
+      color: #1a3c34;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .details {
+      display: none;
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-style: italic;
+      color: #555;
     }
 
     .collapse-button {
-      background-color: #2a3d34;
-      color: white;
-      padding: 0.5rem 1rem;
+      background: #1a3c34;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
       border: none;
+      border-radius: 25px;
       cursor: pointer;
       font-size: 1rem;
-      margin-top: 1rem;
-      display: block;
-      width: 100%;
-      border-radius: 5px;
-      text-align: center;
+      margin-top: 1.5rem;
+      transition: background 0.3s ease;
     }
 
     .collapse-button:hover {
-      background-color: #3a5346;
+      background: #2e5a50;
     }
 
-    /* Media Queries for Responsiveness */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1a3c34;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animal-entry {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .animal-entry h2 {
+        font-size: 1.8rem;
+      }
+
+      .animal-entry p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
       header h1 {
         font-size: 2rem;
       }
 
-      .animal-entry h2 {
-        font-size: 1.5rem;
-      }
-
-      .animal-entry p {
-        font-size: 0.9rem;
+      .animal-entry {
+        padding: 1.5rem;
       }
     }
-
-    /* Animations */
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    .fade-in {
-      animation: fadeIn 1s ease-in-out;
-    }
-
   </style>
 </head>
 <body>
-
   <header>
     <h1>Kofi’s Animal Healing Journal</h1>
-    <p>Documenting how animals heal themselves with natural methods</p>
+    <p>Exploring theಸೀಕರೆ nature’s pharmacy through the diets of herbivores</p>
   </header>
 
   <div class="container">
+    <!-- Elephant -->
+    <div class="animal-entry">
+      <h2>1. Elephants</h2>
+      <p><span class="label">Diet:</span> Grasses, leaves, bark, fruits (up to 300 lbs daily).</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Neem (Azadirachta indica):</b> Antibacterial, antifungal; combats parasites, skin ailments, acts as a dewormer.</li>
+        <li><b>Baobab (Adansonia digitata):</b> High in vitamin C and antioxidants; boosts immunity and healing.</li>
+        <li><b>Marula (Sclerocarya birrea):</b> Anti-inflammatory; aids digestion and vitality.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('elephantDetails')">Discover More</button>
+      <div id="elephantDetails" class="details">
+        <p>Elephants’ massive intake of medicinal plants helps sustain their size and resilience, acting as a natural shield against infections and environmental stress.</p>
+      </div>
+    </div>
 
-    <!-- Animal Entry 1 -->
-    <div class="animal-entry fade-in">
-      <h2>1. Snake</h2>
+    <!-- Rhinoceros -->
+    <div class="animal-entry">
+      <h2>2. Rhinoceroses</h2>
+      <p><span class="label">Diet:</span> Grasses, leaves, shrubs, bark.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Moringa (Moringa oleifera):</b> Antioxidant, anti-inflammatory; supports joints and reduces stress.</li>
+        <li><b>Aloe Vera:</b> Anti-inflammatory; heals wounds and aids digestion.</li>
+        <li><b>Devil’s Claw (Harpagophytum procumbens):</b> Anti-inflammatory; eases arthritis and joint pain.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('rhinoDetails')">Discover More</button>
+      <div id="rhinoDetails" class="details">
+        <p>Rhinos’ tough diet includes plants that fortify their thick skin and massive frames, offering natural relief from inflammation and injury.</p>
+      </div>
+    </div>
+
+    <!-- Bison -->
+    <div class="animal-entry">
+      <h2>3. Bison</h2>
+      <p><span class="label">Diet:</span> Grasses, herbs, shrubs.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Echinacea (Echinacea purpurea):</b> Immune-boosting; prevents infections.</li>
+        <li><b>Yarrow (Achillea millefolium):</b> Wound-healing; aids clotting and repair.</li>
+        <li><b>Dandelion (Taraxacum officinale):</b> Detoxifies liver, regulates digestion.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('bisonDetails')">Discover More</button>
+      <div id="bisonDetails" class="details">
+        <p>Bison roam vast plains, grazing on plants that keep their herds strong and healthy through natural immunity and repair mechanisms.</p>
+      </div>
+    </div>
+
+    <!-- Hippopotamus -->
+    <div class="animal-entry">
+      <h2>4. Hippopotamuses</h2>
+      <p><span class="label">Diet:</span> Grasses, aquatic plants, fruits.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Water Hyacinth (Eichhornia crassipes):</b> Anti-inflammatory, antioxidant; reduces skin irritation.</li>
+        <li><b>Cattails (Typha):</b> Soothes digestion, treats stomach issues.</li>
+        <li><b>Papyrus (Cyperus papyrus):</b> Antibacterial; cleanses digestive system.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('hippoDetails')">Discover More</button>
+      <div id="hippoDetails" class="details">
+        <p>Hippos’ semi-aquatic lifestyle pairs perfectly with plants that heal their skin and digestion, thriving in their riverine habitats.</p>
+      </div>
+    </div>
+
+    <!-- Gorilla -->
+    <div class="animal-entry">
+      <h2>5. Gorillas</h2>
+      <p><span class="label">Diet:</span> Leaves, fruits, bark, stems.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Mint (Mentha species):</b> Relieves digestive discomfort, calms cramps.</li>
+        <li><b>Ginger (Zingiber officinale):</b> Anti-nausea, anti-inflammatory; eases joint pain.</li>
+        <li><b>Lemon Balm (Melissa officinalis):</b> Aids digestion, reduces stress.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('gorillaDetails')">Discover More</button>
+      <div id="gorillaDetails" class="details">
+        <p>Gorillas’ forest diet includes herbs that soothe their robust digestive systems and calm their social lifestyles.</p>
+      </div>
+    </div>
+
+    <!-- Zebra -->
+    <div class="animal-entry">
+      <h2>6. Zebras</h2>
+      <p><span class="label">Diet:</span> Grasses, bitter herbs, shrubs.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Bitter Herbs:</b> Expels parasites, supports digestion.</li>
+        <li><b>Aloe Vera:</b> Anti-inflammatory; heals wounds.</li>
+        <li><b>Clover (Trifolium):</b> Aids digestion, boosts nutrients.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('zebraDetails')">Discover More</button>
+      <div id="zebraDetails" class="details">
+        <p>Zebras’ striped resilience is bolstered by plants that purge parasites and heal their active bodies.</p>
+      </div>
+    </div>
+
+    <!-- Giraffe -->
+    <div class="animal-entry">
+      <h2>7. Giraffes</h2>
+      <p><span class="label">Diet:</span> Leaves from acacia and mimosa trees.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Acacia (Acacia species):</b> Tannins aid digestion, fight parasites.</li>
+        <li><b>Devil’s Claw:</b> Anti-inflammatory; supports joint health.</li>
+        <li><b>Mimosa (Mimosa pudica):</b> Antibacterial, anti-inflammatory; heals wounds.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('giraffeDetails')">Discover More</button>
+      <div id="giraffeDetails" class="details">
+        <p>Giraffes tower over the savanna, sustained by tree-top leaves that protect their long necks and limbs.</p>
+      </div>
+    </div>
+
+    <!-- Camel -->
+    <div class="animal-entry">
+      <h2>8. Camels</h2>
+      <p><span class="label">Diet:</span> Thorny bushes, shrubs, desert vegetation.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Fenugreek (Trigonella foenum-graecum):</b> Immune-boosting, anti-inflammatory; aids stomach health.</li>
+        <li><b>Sagebrush (Artemisia tridentata):</b> Detoxifies, improves digestion.</li>
+        <li><b>Thyme (Thymus vulgaris):</b> Antiseptic; fights infections.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('camelDetails')">Discover More</button>
+      <div id="camelDetails" class="details">
+        <p>Camels endure harsh deserts with plants that cleanse and protect their hardy systems.</p>
+      </div>
+    </div>
+
+    <!-- Panda -->
+    <div class="animal-entry">
+      <h2>9. Pandas</h2>
+      <p><span class="label">Diet:</span> Bamboo, fruits, flowers.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Bamboo (Bambusoideae):</b> Fiber-rich, anti-inflammatory; promotes longevity.</li>
+        <li><b>Licorice (Glycyrrhiza):</b> Soothes digestion, reduces irritation.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('pandaDetails')">Discover More</button>
+      <div id="pandaDetails" class="details">
+        <p>Pandas’ bamboo obsession doubles as a medicinal lifeline, supporting their slow, steady lives.</p>
+      </div>
+    </div>
+
+    <!-- Sloth -->
+    <div class="animal-entry">
+      <h2>10. Sloths</h2>
+      <p><span class="label">Diet:</span> Leaves from cecropia and mimosa trees.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Cecropia (Cecropia species):</b> Antioxidants, anti-inflammatory; supports slow metabolism.</li>
+        <li><b>Mimosa (Mimosa pudica):</b> Antibacterial; boosts overall health.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('slothDetails')">Discover More</button>
+      <div id="slothDetails" class="details">
+        <p>Sloths’ leisurely pace is nurtured by leaves that sustain their low-energy, healing lifestyle.</p>
+      </div>
+    </div>
+
+    <!-- Koala -->
+    <div class="animal-entry">
+      <h2>11. Koalas</h2>
+      <p><span class="label">Diet:</span> Eucalyptus leaves.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Eucalyptus (Eucalyptus species):</b> Antibacterial, antifungal; aids digestion, calms.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('koalaDetails')">Discover More</button>
+      <div id="koalaDetails" class="details">
+        <p>Koalas’ eucalyptus diet is a medicinal marvel, keeping them calm and healthy in treetop solitude.</p>
+      </div>
+    </div>
+
+    <!-- Kangaroo -->
+    <div class="animal-entry">
+      <h2>12. Kangaroos</h2>
+      <p><span class="label">Diet:</span> Grasses, shrubs.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Wattle (Acacia):</b> Antibacterial, aids digestion.</li>
+        <li><b>Kangaroo Grass (Themeda triandra):</b> Anti-inflammatory; supports joint health.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('kangarooDetails')">Discover More</button>
+      <div id="kangarooDetails" class="details">
+        <p>Kangaroos hop through life with plants that fuel their agility and resilience.</p>
+      </div>
+    </div>
+
+    <!-- Tortoise -->
+    <div class="animal-entry">
+      <h2>13. Tortoises</h2>
+      <p><span class="label">Diet:</span> Grasses, leaves, fruits.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Dandelion (Taraxacum officinale):</b> Detoxifies liver, anti-inflammatory.</li>
+        <li><b>Burdock Root (Arctium lappa):</b> Purifies blood, detoxifies.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('tortoiseDetails')">Discover More</button>
+      <div id="tortoiseDetails" class="details">
+        <p>Tortoises’ slow journey is supported by plants that cleanse and sustain their ancient bodies.</p>
+      </div>
+    </div>
+
+    <!-- Antelope -->
+    <div class="animal-entry">
+      <h2>14. Antelopes</h2>
+      <p><span class="label">Diet:</span> Grasses, shrubs, bushes.</p>
+      <p><span class="label">Medicinal Plants:</span></p>
+      <ul>
+        <li><b>Bitter Herbs:</b> Cleanses digestion, fights parasites.</li>
+        <li><b>Sage:</b> Digestive, antimicrobial.</li>
+      </ul>
+      <button class="collapse-button" onclick="toggleDetails('antelopeDetails')">Discover More</button>
+      <div id="antelopeDetails" class="details">
+        <p>Antelopes’ swift grace is enhanced by herbs that purify and protect their nimble frames.</p>
+      </div>
+    </div>
+
+    <!-- Snake -->
+    <div class="animal-entry">
+      <h2>15. Snake</h2>
       <p><span class="label">Condition:</span> Cold, weak, or injured.</p>
-      <p><span class="label">Behavior:</span> Basks in the sun to raise body heat. Seeks cool, damp areas to reduce inflammation.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Aloe vera and clay-rich soil.</p>
-      <p><span class="label">Effect:</span> Sunlight helps restore energy and mobility. Clay and aloe reduce swelling and infection risk.</p>
-      <button class="collapse-button" onclick="toggleDetails('snakeDetails')">Read More</button>
-      <div id="snakeDetails" style="display:none;">
-        <p><strong>Further Insight:</strong> Snakes rely on heat to regulate their body temperature and fight off infections. The use of clay in their environment plays a crucial role in detoxifying and healing their wounds.</p>
+      <p><span class="label">Behavior:</span> Basks in sun, seeks cool damp areas.</p>
+      <p><span class="label">Medicinal Plants/Substances:</span> Aloe vera, clay-rich soil.</p>
+      <p><span class="label">Effect:</span> Sun restores energy; clay/aloe reduce swelling, infection.</p>
+      <button class="collapse-button" onclick="toggleDetails('snakeDetails')">Discover More</button>
+      <div id="snakeDetails" class="details">
+        <p>Snakes harness the sun and earth’s gifts to slither back to health with natural precision.</p>
       </div>
     </div>
 
-    <!-- Animal Entry 2 -->
-    <div class="animal-entry fade-in">
-      <h2>2. Cat</h2>
-      <p><span class="label">Condition:</span> Digestive issues, parasites, or anxiety.</p>
-      <p><span class="label">Behavior:</span> Chews grass, hides, or rests.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Nut grass (Cyperus rotundus), wheatgrass, and catnip.</p>
-      <p><span class="label">Effect:</span> Helps induce vomiting or cleanse the stomach. Catnip calms nerves and eases irritation.</p>
-      <button class="collapse-button" onclick="toggleDetails('catDetails')">Read More</button>
-      <div id="catDetails" style="display:none;">
-        <p><strong>Further Insight:</strong> Wild cats, in particular, are known to consume certain plants that help detoxify their digestive system, aiding in the removal of parasites and alleviating discomfort.</p>
+    <!-- Cat -->
+    <div class="animal-entry">
+      <h2>16. Cat</h2>
+      <p><span class="label">Condition:</span> Digestive issues, parasites, anxiety.</p>
+      <p><span class="label">Behavior:</span> Chews grass, hides, rests.</p>
+      <p><span class="label">Medicinal Plants/Substances:</span> Nut grass, wheatgrass, catnip.</p>
+      <p><span class="label">Effect:</span> Cleanses stomach, calms nerves.</p>
+      <button class="collapse-button" onclick="toggleDetails('catDetails')">Discover More</button>
+      <div id="catDetails" class="details">
+        <p>Cats’ mysterious instincts lead them to plants that purr-fectly balance their systems.</p>
       </div>
     </div>
 
-    <!-- Animal Entry 3 -->
-    <div class="animal-entry fade-in">
-      <h2>3. Elephant</h2>
-      <p><span class="label">Condition:</span> Overheated, digestive problems, or injury.</p>
-      <p><span class="label">Behavior:</span> Sprays water or mud on its body to cool down; rests more and slows movement when sick or wounded.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Eats Boraginaceae family plants, Terminalia bark, and wild ginger (Siphonochilus aethiopicus).</p>
-      <p><span class="label">Effect:</span> Wild ginger reduces pain and inflammation. Terminalia bark treats digestive issues and has antibacterial properties. Mud acts as a bug repellent and wound protector.</p>
-      <button class="collapse-button" onclick="toggleDetails('elephantDetails')">Read More</button>
-      <div id="elephantDetails" style="display:none;">
-        <p><strong>Further Insight:</strong> Elephants use their environmental understanding to apply mud to wounds and act as a natural barrier against pests while also cooling themselves down.</p>
+    <!-- Chimpanzee -->
+    <div class="animal-entry">
+      <h2>17. Chimpanzee</h2>
+      <p><span class="label">Condition:</span> Parasites, stomach pain, infections.</p>
+      <p><span class="label">Behavior:</span> Eats bitter leaves, chews roots.</p>
+      <p><span class="label">Medicinal Plants/Substances:</span> Bitter leaf, Aspilia, piper leaves.</p>
+      <p><span class="label">Effect:</span> Kills worms, fights infections, repels insects.</p>
+      <button class="collapse-button" onclick="toggleDetails('chimpanzeeDetails')">Discover More</button>
+      <div id="chimpanzeeDetails" class="details">
+        <p>Chimpanzees’ primal wisdom shines in their use of nature’s pharmacy for healing.</p>
       </div>
     </div>
 
-    <!-- Animal Entry 4 -->
-    <div class="animal-entry fade-in">
-      <h2>4. Chimpanzee</h2>
-      <p><span class="label">Condition:</span> Parasites, stomach pain, or internal infections.</p>
-      <p><span class="label">Behavior:</span> Chimpanzees intentionally eat bitter, rough leaves or chew medicinal roots.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Vernonia amygdalina (bitter leaf), Aspilia mossambicensis, and piper species leaves.</p>
-      <p><span class="label">Effect:</span> Bitter leaf and Aspilia kill intestinal worms and fight infections. Piper leaves are crushed and rubbed on skin to repel insects and prevent bites.</p>
-      <button class="collapse-button" onclick="toggleDetails('chimpanzeeDetails')">Read More</button>
-      <div id="chimpanzeeDetails" style="display:none;">
-        <p><strong>Further Insight:</strong> Chimpanzees demonstrate knowledge of natural remedies, using bitter leaves to detoxify their systems and also protect themselves from skin irritants.</p>
+    <!-- Bear -->
+    <div class="animal-entry">
+      <h2>18. Bear</h2>
+      <p><span class="label">Condition:</span> Wounds, infections, digestive issues.</p>
+      <p><span class="label">Behavior:</span> Rests, forages, licks wounds.</p>
+      <p><span class="label">Medicinal Plants/Substances:</span> Osha root, devil’s club, Angelica.</p>
+      <p><span class="label">Effect:</span> Antimicrobial, anti-inflammatory; fights infection.</p>
+      <button class="collapse-button" onclick="toggleDetails('bearDetails')">Discover More</button>
+      <div id="bearDetails" class="details">
+        <p>Bears’ rugged strength is fortified by roots that heal and protect their wild spirits.</p>
       </div>
     </div>
-
-    <!-- Animal Entry 5 -->
-    <div class="animal-entry fade-in">
-      <h2>5. Bear</h2>
-      <p><span class="label">Condition:</span> Wounds, infections, or digestive issues.</p>
-      <p><span class="label">Behavior:</span> Rests in dens, forages selectively, and licks wounds.</p>
-      <p><span class="label">Medicinal Plants/Substances:</span> Eats Ligusticum porteri (Osha root), devil’s club, and Angelica roots.</p>
-      <p><span class="label">Effect:</span> These roots have powerful antimicrobial and anti-inflammatory compounds. Bears use them to fight off infection and soothe digestive pain.</p>
-      <button class="collapse-button" onclick="toggleDetails('bearDetails')">Read More</button>
-      <div id="bearDetails" style="display:none;">
-        <p><strong>Further Insight:</strong> Bears' instinctual use of Osha root and Angelica root highlights their ability to recognize natural antimicrobial properties in plants.</p>
-      </div>
-    </div>
-
-    <!-- Additional Entries (Animal 6 to 20) follow the same format -->
 
   </div>
 
   <footer>
-    <p>Created by Kofi Fosu — Cosmos Coderr</p>
+    <p>Curated by Kofi Fosu — Cosmos Coderr | Unveiling Nature’s Secrets</p>
   </footer>
 
   <script>
     function toggleDetails(id) {
-      var element = document.getElementById(id);
-      if (element.style.display === "none") {
-        element.style.display = "block";
-      } else {
-        element.style.display = "none";
-      }
+      const element = document.getElementById(id);
+      element.style.display = element.style.display === 'block' ? 'none' : 'block';
     }
   </script>
-
 </body>
 </html>
